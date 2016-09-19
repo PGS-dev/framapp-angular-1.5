@@ -46,9 +46,6 @@ const root = angular
 
         $urlRouterProvider.when('', '/');
         $urlRouterProvider.otherwise('/');
-        $mdThemingProvider.theme('default')
-            .primaryPalette('blue')
-            .accentPalette('orange');
     })
     .name;
 
