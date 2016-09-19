@@ -4,7 +4,6 @@ import ngMaterial from 'angular-material';
 import ngMessages from 'angular-messages';
 import componentsModule from './components';
 import pagesModule from './pages';
-import breadCrumbs from 'angular-utils-ui-breadcrumbs';
 import translateModule from './translate';
 import localStorage from 'angular-local-storage';
 
@@ -19,8 +18,7 @@ const root = angular
         localStorage,     //
         translateModule,  //
         componentsModule, // app modules
-        pagesModule,      //
-        breadCrumbs       //
+        pagesModule      //
     ])
     .config(($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider, localStorageServiceProvider) => {
         'ngInject';
@@ -31,7 +29,7 @@ const root = angular
         });
 
         localStorageServiceProvider
-            .setPrefix('prome');
+            .setPrefix('framapp');
 
         $stateProvider
             .state('app', {
