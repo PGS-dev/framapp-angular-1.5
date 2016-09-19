@@ -18,8 +18,8 @@ const root = angular
         componentsModule,
         pagesModule
     ])
-    .constant("categories", "https://project-5613440220430148247.firebaseio.com/api/v1/categories.json")
-    .config(($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider, localStorageServiceProvider) => {
+    .constant("appConfig", "url", "https://woven-patrol-127817.firebaseio.com")
+    .config(($stateProvider, $urlRouterProvider, $locationProvider, localStorageServiceProvider) => {
         'ngInject';
 
         $locationProvider.html5Mode({
@@ -27,8 +27,7 @@ const root = angular
             requireBase: false
         });
 
-        localStorageServiceProvider
-            .setPrefix('framapp');
+        localStorageServiceProvider.setPrefix('framapp');
 
         $stateProvider
             .state('app', {

@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+    port: 80,
     path: {
         'app': path.resolve(__dirname, '../app'),
         'root': path.resolve(__dirname, '../'),

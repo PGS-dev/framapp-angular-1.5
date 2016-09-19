@@ -14,7 +14,6 @@ const mainPageModule = angular
                     'main@': 'mainPageComponent'
                 }
             });
-
     })
     .name;
 
