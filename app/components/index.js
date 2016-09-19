@@ -1,8 +1,12 @@
+import navbarModule from './navbar';
 import appModule from './app';
+import footerModule from './footer';
 
 const componentsModule = angular
     .module('app.components', [
-        appModule
+        navbarModule,
+        appModule,
+        footerModule
     ])
     .name;
 

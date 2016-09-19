@@ -11,9 +11,7 @@ const mainPageModule = angular
             .state('app.main', {
                 url: '/',
                 views: {
-                    'main@': {
-                        template: '<main-page-component></main-page-component>'
-                    }
+                    'main@': 'mainPageComponent'
                 }
             });
 
@@ -21,4 +19,3 @@ const mainPageModule = angular
     .name;
 
 export default mainPageModule;
-    

@@ -4,22 +4,21 @@ import ngMaterial from 'angular-material';
 import ngMessages from 'angular-messages';
 import componentsModule from './components';
 import pagesModule from './pages';
-import translateModule from './translate';
 import localStorage from 'angular-local-storage';
-
-
 import './style/sass/common.scss';
 
 const root = angular
     .module('app', [
-        uiRouter,         // 3rd party modules
-        ngMaterial,       //
-        ngMessages,       //
-        localStorage,     //
-        translateModule,  //
-        componentsModule, // app modules
-        pagesModule      //
+        // 3rd party modules
+        uiRouter,
+        ngMaterial,
+        ngMessages,
+        localStorage,
+        // App modules
+        componentsModule,
+        pagesModule
     ])
+    .constant("categories", "https://project-5613440220430148247.firebaseio.com/api/v1/categories.json")
     .config(($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider, localStorageServiceProvider) => {
         'ngInject';
 
@@ -35,12 +34,8 @@ const root = angular
             .state('app', {
                 abstract: true,
                 views: {
-                    'navbar@': {
-                        template: '<navbar-component></navbar-component>'
-                    },
-                    'footer@': {
-                        template: '<footer-component></footer-component>'
-                    }
+                    'navbar@': 'navbarComponent',
+                    'footer@': 'footerComponent'
                 }
             });
 
@@ -50,4 +45,3 @@ const root = angular
     .name;
 
 export default root;
-

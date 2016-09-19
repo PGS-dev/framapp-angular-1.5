@@ -28,4 +28,3 @@ module.exports = function (karma) {
         concurrency: 6e6
     });
 };
-
