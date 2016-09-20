@@ -1,0 +1,9 @@
+node_modules/
+logs/
+*.log
+public/
+.idea/
+logs
+.vscode/launch.json
+coverage/
+dist/
