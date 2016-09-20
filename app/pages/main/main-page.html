@@ -3,9 +3,19 @@
         <category-component></category-component>
         <md-content class="pgs-mainContent" flex layout-padding>
             <div layout="column" layout-align="top left">
-                <p>
-                    Here will be products
-                </p>
+                <md-grid-list
+                        md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+                        md-row-height-gt-md="1:1" md-row-height="2:2"
+                        md-gutter="12px" md-gutter-gt-sm="8px" >
+                    <md-grid-tile ng-repeat="tile in $ctrl.newData">
+                        <img ng-src="{{tile.imageUrl}}" layout-fill>
+                        <md-icon md-svg-icon="../image/star.svg"></md-icon>
+                        <md-grid-tile-footer>
+                            <h3>{{ tile.title}}</h3>
+                        </md-grid-tile-footer>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
             </div>
             <div flex></div>
         </md-content>
