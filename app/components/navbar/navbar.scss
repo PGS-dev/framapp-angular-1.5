@@ -2,7 +2,10 @@
 
 .NavbarComponent {
   md-toolbar {
+    position: fixed;
+    width:100%;
     background: $pgs-orange;
+
     .md-toolbar-tools {
       h2 {
         margin: 24.9px 0 24.9px 0;
