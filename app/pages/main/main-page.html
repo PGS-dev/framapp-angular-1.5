@@ -1,2 +1,13 @@
-<div class="MainPage" ng-cloak>
+<div class="MainPage" layout="column" ng-cloak>
+    <section layout="row" flex>
+        <category-component></category-component>
+        <md-content class="pgs-mainContent" flex layout-padding>
+            <div layout="column" layout-align="top left">
+                <p>
+                    Here will be products
+                </p>
+            </div>
+            <div flex></div>
+        </md-content>
+    </section>
 </div>

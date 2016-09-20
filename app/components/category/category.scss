@@ -1,0 +1,9 @@
+@import '../../style/sass/common';
+
+ md-sidenav.CategoryComponent {
+   top: 64px;
+
+   md-toolbar {
+     background: $pgs-orange;
+   }
+}
