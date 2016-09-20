@@ -9,7 +9,9 @@
                         md-gutter="12px" md-gutter-gt-sm="8px" >
                     <md-grid-tile ng-repeat="tile in $ctrl.newData">
                         <img ng-src="{{tile.imageUrl}}" layout-fill>
-                        <md-icon md-svg-icon="../image/star.svg"></md-icon>
+                        <md-icon ng-if="tile.promoted"
+                                 md-svg-icon="../image/star.svg">
+                        </md-icon>
                         <md-grid-tile-footer>
                             <h3>{{ tile.title}}</h3>
                         </md-grid-tile-footer>

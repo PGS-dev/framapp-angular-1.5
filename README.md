@@ -7,6 +7,9 @@ The implementation of these same functional requirements based on different tech
 ## Features
 
 <dl>
-  <dt>Header</dt>
-  <dd>Header be always visible on top of the screen, even if page is very long.</dd>
+	<dt>Home</dt>
+	<dd>Display in home page all promoted products, and categories listed as navigation</dd>
+
+	<dt>Header</dt>
+	<dd>Header be always visible on top of the screen, even if page is very long.</dd>
 </dl>
