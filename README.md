@@ -1,4 +1,5 @@
-# FramApp - poznawanie frameworkow
+![alt text][logo]
+[logo]: https://raw.githubusercontent.com/PGS-dev/framapp-angular-1.5/feature/install-modules-and-configure-webpack/app/assets/image/angular.png "angularjs banner"
 
-# Idea
-Implementacja tych samych zalozen funkcjonalnych w oparciu o rozne technologie, majac na celu ich pozniejsze porownanie.
+## FramApp - AngularJS 1.5
+The implementation of these same functional requirements based on different technologies, with a view to their subsequent comparison.
