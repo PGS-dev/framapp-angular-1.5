@@ -18,7 +18,7 @@ const root = angular
         componentsModule,
         pagesModule
     ])
-    .constant("appConfig", "https://woven-patrol-127817.firebaseio.com/api/v1/")
+    .constant("BASE_URL", "https://woven-patrol-127817.firebaseio.com/api/v1/")
     .config(($stateProvider, $urlRouterProvider, $locationProvider, localStorageServiceProvider) => {
         'ngInject';
 

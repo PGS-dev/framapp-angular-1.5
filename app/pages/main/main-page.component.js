@@ -7,21 +7,21 @@ class CategoryController {
     $onInit() {
         this.getProducts();
         this.data = [];
-        this.newData = [];
+        this.promotedData = [];
     }
 
     getProducts() {
         this.mainPageService.getProducts().then((data) => {
             this.data = data;
 
-            this.sortArray(this.data, this.newData);
+            this.getPromotedProducts(this.data, this.promotedData);
         })
     }
 
-    sortArray(data, newData) {
+    getPromotedProducts(data, promotedData) {
         angular.forEach(data, function (param) {
             if (param.promoted == true) {
-                newData.push(param);
+                promotedData.push(param);
             }
         });
     }
