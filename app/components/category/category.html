@@ -1,9 +1,9 @@
 <md-sidenav
-        class="CategoryComponent site-sidenav md-sidenav-left md-whiteframe-z2"
-        md-is-open="true"
-        md-disable-backdrop="true"
-        md-component-id="left">
-    <md-toolbar>
+        class="CategoryComponent md-sidenav-left md-whiteframe-z2"
+        md-component-id="left"
+        layout="column"
+        md-is-locked-open="$mdMedia('gt-sm')">
+    <md-toolbar class="md-theme-light">
         <h1 class="md-toolbar-tools">Category</h1>
     </md-toolbar>
     <md-content layout="column">
@@ -11,4 +11,5 @@
             <span>{{ tile.title }}</span>
         </md-button>
     </md-content>
+    <div flex></div>
 </md-sidenav>

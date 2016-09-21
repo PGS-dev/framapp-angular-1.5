@@ -4,6 +4,7 @@
 .center-text {
   text-align: center;
 }
+
 .margin-lft {
   margin-left: 17.1%;
   list-style: none;
@@ -11,4 +12,8 @@
   li {
     display: inline-block;
   }
+}
+
+md-backdrop {
+  position: fixed;
 }

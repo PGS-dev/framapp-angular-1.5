@@ -24,7 +24,7 @@ class CategoryController {
             }
         });
     }
-    
+
 }
 
 const MainPageComponent = {

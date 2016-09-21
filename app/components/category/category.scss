@@ -1,10 +1,16 @@
 @import '../../style/sass/common';
 
 md-sidenav.CategoryComponent {
-   position: fixed;
-   top: 64px;
+  position: fixed !important;
+  top: 64px;
 
-   md-toolbar {
-     background: $pgs-orange;
-   }
+  md-toolbar {
+    background: $pgs-orange;
+  }
+}
+
+@media (max-width: 959px) {
+  md-sidenav.CategoryComponent {
+    top: 0;
+  }
 }

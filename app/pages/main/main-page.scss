@@ -2,7 +2,6 @@
 
 .MainPage {
   .pgs-mainContent {
-    margin-left: 320px;
     margin-top: 64px;
 
     md-icon {
@@ -11,6 +10,14 @@
       position: absolute;
       top: 10px;
       right: 10px;
+    }
+  }
+}
+
+@media (min-width: 959px) {
+  .MainPage {
+    .pgs-mainContent {
+      margin-left: 320px;
     }
   }
 }
