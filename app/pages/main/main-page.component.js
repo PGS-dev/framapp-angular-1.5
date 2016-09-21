@@ -1,7 +1,7 @@
 class CategoryController {
-    constructor(mainPageService) {
+    constructor(appService) {
         'ngInject';
-        this.mainPageService = mainPageService;
+        this.appService = appService;
     }
 
     $onInit() {
@@ -11,9 +11,8 @@ class CategoryController {
     }
 
     getProducts() {
-        this.mainPageService.getProducts().then((data) => {
+        this.appService.getProducts().then((data) => {
             this.data = data;
-
             this.getPromotedProducts(this.data, this.promotedData);
         })
     }
@@ -25,6 +24,7 @@ class CategoryController {
             }
         });
     }
+    
 }
 
 const MainPageComponent = {

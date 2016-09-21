@@ -1,7 +1,7 @@
 class CategoryController {
-    constructor(categoryService) {
+    constructor(appService) {
         'ngInject';
-        this.categoryService = categoryService;
+        this.appService = appService;
     }
 
     $onInit() {
@@ -10,7 +10,7 @@ class CategoryController {
     }
 
     getCategories() {
-        this.categoryService.getCategories()
+        this.appService.getCategories()
             .then((data) => {
                 this.data = data;
             })
