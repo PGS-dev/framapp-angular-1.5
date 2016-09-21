@@ -7,7 +7,10 @@
         <h1 class="md-toolbar-tools">Category</h1>
     </md-toolbar>
     <md-content layout="column">
-        <md-button ng-repeat="tile in $ctrl.data" class="md-primary" aria-label="Category {{ tile.title }}">
+        <md-button ng-repeat="tile in $ctrl.data"
+                   ui-sref="app.category({ id:tile.id })"
+                   class="md-primary"
+                   aria-label="Category {{ tile.title }}">
             <span>{{ tile.title }}</span>
         </md-button>
     </md-content>
