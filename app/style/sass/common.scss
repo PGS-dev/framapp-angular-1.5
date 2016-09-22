@@ -17,3 +17,21 @@
 md-backdrop {
   position: fixed;
 }
+
+.pgs-mainContent {
+  margin-top: 64px;
+
+  md-icon.star-icon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+@media (min-width: 959px) {
+  .pgs-mainContent {
+    margin-left: 320px;
+  }
+}

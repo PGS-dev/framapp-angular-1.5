@@ -1,23 +1,4 @@
 @import '../../style/sass/common';
 
 .CategoryView {
-  .pgs-mainContent {
-    margin-top: 64px;
-
-    md-icon {
-      width: 40px;
-      height: 40px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-  }
-}
-
-@media (min-width: 959px) {
-  .CategoryView {
-    .pgs-mainContent {
-      margin-left: 320px;
-    }
-  }
 }
