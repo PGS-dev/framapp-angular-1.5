@@ -1,4 +1,4 @@
-class AppService {
+class GetDataService {
     constructor($http, BASE_URL) {
         'ngInject';
 
@@ -7,7 +7,7 @@ class AppService {
     }
 
     getCategories() {
-        return this.$http.get(`${this.BASE_URL}categories.json`).then((response) => {
+        return this.$http.get(`${this.BASE_URL}/categories.json`).then((response) => {
             return response.data;
         })
         .catch((response) => {
@@ -16,7 +16,7 @@ class AppService {
     }
 
     getProducts() {
-        return this.$http.get(`${this.BASE_URL}products.json`).then((response) => {
+        return this.$http.get(`${this.BASE_URL}/products.json`).then((response) => {
             return response.data;
         })
         .catch((response) => {
@@ -26,4 +26,4 @@ class AppService {
 
 }
 
-export default AppService;
+export default GetDataService;

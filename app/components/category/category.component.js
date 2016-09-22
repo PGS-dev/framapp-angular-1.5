@@ -1,19 +1,29 @@
 class CategoryController {
-    constructor(appService) {
+    constructor(getDataService, $state) {
         'ngInject';
-        this.appService = appService;
+        this.getDataService = getDataService;
+        this.$state = $state;
     }
 
     $onInit() {
         this.getCategories();
         this.data = {};
+        this.actualState = this.$state.params.id;
+        this.selectedCategory = this.actualState;
+    }
+
+    selectCategory(newCategory) {
+        this.selectedCategory = newCategory;
+    }
+
+    getCategoryClass(category) {
+        return this.selectedCategory == category ? "md-raised" : "";
     }
 
     getCategories() {
-        this.appService.getCategories()
-            .then((data) => {
-                this.data = data;
-            })
+        this.getDataService.getCategories().then((data) => {
+            this.data = data;
+        })
     }
 }
 

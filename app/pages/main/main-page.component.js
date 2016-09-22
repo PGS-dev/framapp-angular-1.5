@@ -1,29 +1,23 @@
 class CategoryController {
-    constructor(appService) {
+    constructor(getDataService) {
         'ngInject';
-        this.appService = appService;
+        this.getDataService = getDataService;
     }
 
     $onInit() {
         this.getProducts();
         this.data = [];
         this.promotedData = [];
+        this.categoryData = [];
     }
 
     getProducts() {
-        this.appService.getProducts().then((data) => {
+        this.getDataService.getProducts().then(data => {
             this.data = data;
-            this.getPromotedProducts(this.data, this.promotedData);
+            this.promotedData = this.data.filter(n => n.promoted === true);
         })
     }
 
-    getPromotedProducts(data, promotedData) {
-        angular.forEach(data, function (param) {
-            if (param.promoted == true) {
-                promotedData.push(param);
-            }
-        });
-    }
 
 }
 

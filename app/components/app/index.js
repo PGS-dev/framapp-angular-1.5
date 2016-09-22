@@ -1,10 +1,10 @@
 import AppComponent from './app.component';
-import AppService from './app.service';
+import GetDataService from './app.service';
 
 const appModule = angular
     .module('app.components.appModule', [])
     .component('appComponent', AppComponent)
-    .service('appService', AppService)
+    .service('getDataService', GetDataService)
     .name;
 
 export default appModule;

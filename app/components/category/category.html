@@ -10,6 +10,8 @@
         <md-button ng-repeat="tile in $ctrl.data"
                    ui-sref="app.category({ id:tile.id })"
                    class="md-primary"
+                   ng-click="$ctrl.selectCategory(tile.id)"
+                   ng-class="$ctrl.getCategoryClass(tile.id)"
                    aria-label="Category {{ tile.title }}">
             <span>{{ tile.title }}</span>
         </md-button>
