@@ -1,0 +1,23 @@
+<div class="ProductView" layout="column" ng-cloak>
+    <md-content ng-class="{pullleft: $ctrl.$mdMedia('gt-sm')}"
+                class="pgs-mainContent" layout-padding>
+        <div layout="column" layout-align="top left">
+
+            <md-card md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{$ctrl.productData[0].title}}</span>
+                        <span class="md-subhead">{{$ctrl.productData[0].description}}</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-lg card-media">
+                            <img ng-src="{{$ctrl.productData[0].imageUrl}}"/>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+            </md-card>
+
+        </div>
+        <div flex></div>
+    </md-content>
+</div>
