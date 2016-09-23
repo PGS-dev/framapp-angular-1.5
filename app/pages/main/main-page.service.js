@@ -2,7 +2,7 @@ class MainService {
     constructor($state) {
         this.$state = $state;
     }
-    promotedProducts(array) {
+    filterProductsByPromoted(array) {
         this.promotedData = array.filter(n => n.promoted === true);
         return this.promotedData;
     }

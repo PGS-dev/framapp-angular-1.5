@@ -7,21 +7,27 @@ class GetDataService {
     }
 
     getCategories() {
-        return this.$http.get(`${this.BASE_URL}/categories.json`).then((response) => {
-            return response.data;
-        })
-        .catch((response) => {
-            console.log(response.statusText);
-        });
+        return this.$http.get(`${this.BASE_URL}/categories.json`)
+            .then((response) => {
+                return response.data;
+            })
+            .catch((response) => {
+                this.responseError(response);
+            });
     }
 
     getProducts() {
-        return this.$http.get(`${this.BASE_URL}/products.json`).then((response) => {
-            return response.data;
-        })
-        .catch((response) => {
-            console.log(response.statusText);
-        });
+        return this.$http.get(`${this.BASE_URL}/products.json`)
+            .then((response) => {
+                return response.data;
+            })
+            .catch((response) => {
+                this.responseError(response);
+            });
+    }
+
+    responseError(response) {
+        console.log(response.statusText);
     }
 
 }

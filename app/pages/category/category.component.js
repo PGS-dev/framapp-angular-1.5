@@ -12,7 +12,7 @@ class CategoryController {
     getProducts() {
         this.getDataService.getProducts().then((data) => {
             this.data = data;
-            this.categoryData = this.categoryService.filterProducts(this.data);
+            this.categoryData = this.categoryService.filterProductsByCategory(this.data);
         })
     }
 }

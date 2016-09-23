@@ -12,7 +12,7 @@ class CategoryController {
     getProducts() {
         this.getDataService.getProducts().then(data => {
             this.data = data;
-            this.promotedData = this.mainService.promotedProducts(this.data);
+            this.promotedData = this.mainService.filterProductsByPromoted(this.data);
         })
     }
 }
