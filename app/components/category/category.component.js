@@ -1,7 +1,7 @@
 class CategoryController {
-    constructor(getDataService, $state) {
+    constructor(dataService, $state) {
         'ngInject';
-        this.getDataService = getDataService;
+        this.dataService = dataService;
         this.$state = $state;
     }
 
@@ -20,7 +20,7 @@ class CategoryController {
     }
 
     getCategories() {
-        this.getDataService.getCategories()
+        this.dataService.getCategories()
             .then((data) => {
                 this.data = data;
             })

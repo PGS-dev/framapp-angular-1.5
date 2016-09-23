@@ -1,8 +1,8 @@
-class CategoryController {
-    constructor(getDataService, mainService, $mdMedia) {
+class MainPageController {
+    constructor(dataService, homePageService, $mdMedia) {
         'ngInject';
-        this.getDataService = getDataService;
-        this.mainService = mainService;
+        this.dataService = dataService;
+        this.homePageService = homePageService;
         this.$mdMedia = $mdMedia;
     }
 
@@ -13,17 +13,17 @@ class CategoryController {
     }
 
     getProducts() {
-        this.getDataService.getProducts()
+        this.dataService.getProducts()
             .then(data => {
                 this.data = data;
-                this.promotedData = this.mainService.filterProductsByPromoted(this.data);
+                this.promotedData = this.homePageService.filterProductsByPromoted(this.data);
             })
     }
 
 }
 
 const MainPageComponent = {
-    controller: CategoryController,
+    controller: MainPageController,
     template: require('./main-page.html')
 };
 

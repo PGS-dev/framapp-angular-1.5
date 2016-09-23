@@ -1,7 +1,7 @@
 class CategoryController {
-    constructor(getDataService, categoryService, $mdMedia) {
+    constructor(dataService, categoryService, $mdMedia) {
         'ngInject';
-        this.getDataService = getDataService;
+        this.dataService = dataService;
         this.categoryService = categoryService;
         this.$mdMedia = $mdMedia;
     }
@@ -13,7 +13,7 @@ class CategoryController {
     }
 
     getProducts() {
-        this.getDataService.getProducts()
+        this.dataService.getProducts()
             .then((data) => {
                 this.data = data;
                 this.categoryData = this.categoryService.filterProductsByCategory(this.data);

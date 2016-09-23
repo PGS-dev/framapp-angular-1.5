@@ -1,4 +1,4 @@
-class GetDataService {
+class DataService {
     constructor($http, BASE_URL) {
         'ngInject';
 
@@ -28,4 +28,4 @@ class GetDataService {
 
 }
 
-export default GetDataService;
+export default DataService;
