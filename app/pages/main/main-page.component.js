@@ -1,24 +1,20 @@
 class CategoryController {
-    constructor(getDataService) {
+    constructor(getDataService, mainService) {
         'ngInject';
         this.getDataService = getDataService;
+        this.mainService = mainService;
     }
-
     $onInit() {
         this.getProducts();
         this.data = [];
         this.promotedData = [];
-        this.categoryData = [];
     }
-
     getProducts() {
         this.getDataService.getProducts().then(data => {
             this.data = data;
-            this.promotedData = this.data.filter(n => n.promoted === true);
+            this.promotedData = this.mainService.promotedProducts(this.data);
         })
     }
-
-
 }
 
 const MainPageComponent = {

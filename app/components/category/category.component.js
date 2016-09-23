@@ -8,8 +8,7 @@ class CategoryController {
     $onInit() {
         this.getCategories();
         this.data = {};
-        this.actualState = this.$state.params.id;
-        this.selectedCategory = this.actualState;
+        this.selectedCategory = this.$state.params.id;
     }
 
     selectCategory(newCategory) {
