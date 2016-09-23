@@ -1,8 +1,9 @@
 class CategoryController {
-    constructor(getDataService, mainService) {
+    constructor(getDataService, mainService, $mdMedia) {
         'ngInject';
         this.getDataService = getDataService;
         this.mainService = mainService;
+        this.$mdMedia = $mdMedia;
     }
 
     $onInit() {
