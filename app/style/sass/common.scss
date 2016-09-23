@@ -4,11 +4,32 @@
 .center-text {
   text-align: center;
 }
+
 .margin-lft {
   margin-left: 17.1%;
   list-style: none;
   padding: 0;
   li {
     display: inline-block;
+  }
+}
+
+.pullleft {
+  margin-left: 320px;
+}
+
+md-backdrop {
+  position: fixed;
+}
+
+.pgs-mainContent {
+  margin-top: 64px;
+
+  md-icon.star-icon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }

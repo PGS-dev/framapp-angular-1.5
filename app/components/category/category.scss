@@ -1,0 +1,20 @@
+@import '../../style/sass/common';
+
+md-sidenav.CategoryComponent {
+  position: fixed !important;
+  top: 64px;
+
+  md-toolbar {
+    background: $pgs-orange;
+  }
+  .md-button {
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 959px) {
+  md-sidenav.CategoryComponent {
+    top: 0;
+  }
+}

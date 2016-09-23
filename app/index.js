@@ -2,9 +2,9 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 import ngMessages from 'angular-messages';
+import localStorage from 'angular-local-storage';
 import componentsModule from './components';
 import pagesModule from './pages';
-import localStorage from 'angular-local-storage';
 import './style/sass/common.scss';
 
 const root = angular
@@ -18,7 +18,7 @@ const root = angular
         componentsModule,
         pagesModule
     ])
-    .constant("appConfig", "https://project-5613440220430148247.firebaseio.com/api/v1/")
+    .constant("BASE_URL", "https://woven-patrol-127817.firebaseio.com/api/v1")
     .config(($stateProvider, $urlRouterProvider, $locationProvider, localStorageServiceProvider) => {
         'ngInject';
 

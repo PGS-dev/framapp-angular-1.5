@@ -1,4 +1,4 @@
-<div class="MainPage" layout="column" ng-cloak>
+<div class="CategoryView" layout="column" ng-cloak>
     <md-content ng-class="{pullleft: $ctrl.$mdMedia('gt-sm')}"
                 class="pgs-mainContent" layout-padding>
         <div layout="column" layout-align="top left">
@@ -6,7 +6,7 @@
                     md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
                     md-row-height-gt-md="1:1" md-row-height="2:2"
                     md-gutter="12px" md-gutter-gt-sm="8px">
-                <md-grid-tile ng-repeat="tile in $ctrl.promotedData">
+                <md-grid-tile ng-repeat="tile in $ctrl.categoryData">
                     <img ng-src="{{tile.imageUrl}}" layout-fill>
                     <md-icon ng-if="tile.promoted"
                              class="star-icon"

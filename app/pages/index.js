@@ -1,8 +1,10 @@
 import mainPageModule from './main';
+import categoryViewModule from './category';
 
 const pagesModule = angular
     .module('app.pages', [
-        mainPageModule
+        mainPageModule,
+        categoryViewModule
     ])
     .name;
 
