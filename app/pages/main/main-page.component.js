@@ -4,17 +4,21 @@ class CategoryController {
         this.getDataService = getDataService;
         this.mainService = mainService;
     }
+
     $onInit() {
         this.getProducts();
         this.data = [];
         this.promotedData = [];
     }
+
     getProducts() {
-        this.getDataService.getProducts().then(data => {
-            this.data = data;
-            this.promotedData = this.mainService.filterProductsByPromoted(this.data);
-        })
+        this.getDataService.getProducts()
+            .then(data => {
+                this.data = data;
+                this.promotedData = this.mainService.filterProductsByPromoted(this.data);
+            })
     }
+
 }
 
 const MainPageComponent = {

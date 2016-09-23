@@ -20,9 +20,10 @@ class CategoryController {
     }
 
     getCategories() {
-        this.getDataService.getCategories().then((data) => {
-            this.data = data;
-        })
+        this.getDataService.getCategories()
+            .then((data) => {
+                this.data = data;
+            })
     }
 }
 

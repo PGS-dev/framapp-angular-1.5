@@ -1,5 +1,6 @@
 <div class="MainPage" layout="column" ng-cloak>
-    <md-content class="pgs-mainContent" layout-padding>
+    <md-content ng-class="{pull-left: $ctrl.$mdMedia('gt-sm')}"
+                class="pgs-mainContent" layout-padding>
         <div layout="column" layout-align="top left">
             <md-grid-list
                     md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"

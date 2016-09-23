@@ -11,9 +11,7 @@ class GetDataService {
             .then((response) => {
                 return response.data;
             })
-            .catch((response) => {
-                this.responseError(response);
-            });
+            .catch(this.responseError);
     }
 
     getProducts() {
@@ -21,13 +19,11 @@ class GetDataService {
             .then((response) => {
                 return response.data;
             })
-            .catch((response) => {
-                this.responseError(response);
-            });
+            .catch(this.responseError);
     }
 
     responseError(response) {
-        console.log(response.statusText);
+        console.log(response);
     }
 
 }

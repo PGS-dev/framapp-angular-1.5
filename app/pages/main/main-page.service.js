@@ -3,8 +3,7 @@ class MainService {
         this.$state = $state;
     }
     filterProductsByPromoted(array) {
-        this.promotedData = array.filter(n => n.promoted === true);
-        return this.promotedData;
+        return array.filter(n => n.promoted === true);
     }
 }
 
