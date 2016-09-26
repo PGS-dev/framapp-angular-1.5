@@ -7,6 +7,12 @@ The implementation of these same functional requirements based on different tech
 ## Features
 
 <dl>
+	<dt>Product Page</dt>
+	<dd>You can see product details page.</dd>
+
+	<dt>Category navigation</dt>
+	<dd>As a user you can to see all possible categories listed as navigation links.</dd>
+
 	<dt>Home</dt>
 	<dd>Display in home page all promoted products, and categories listed as navigation</dd>
 
