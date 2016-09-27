@@ -34,8 +34,8 @@
                                    ng-model="inputs.name" required>
                             <div ng-messages="loginForm.login.$error"
                                  ng-if="loginForm.login.$invalid && !loginForm.login.$pristine">
-                                <div ng-message="required">Dane pole jest wymagane</div>
-                                <div ng-message="maxlength">Wprowadzona nazwa jest za długa</div>
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="maxlength">The given expression is too long</div>
                             </div>
                         </md-input-container>
 
@@ -47,14 +47,14 @@
                                    ng-model="inputs.pass" required>
                             <div ng-messages="loginForm.password.$error"
                                  ng-if="loginForm.password.$invalid && !loginForm.password.$pristine">
-                                <div ng-message="required">Dane pole jest wymagane</div>
+                                <div ng-message="required">This field is required</div>
                             </div>
                         </md-input-container>
                     </div>
                 </md-dialog-content>
 
                 <md-dialog-actions layout="row">
-                    <md-button type="submit" class="md-primary md-raised" ng-disabled="loginForm.$invalid" ng-click="answer(inputs)">
+                    <md-button type="submit" class="md-primary md-raised" ng-disabled="loginForm.$invalid" ng-click="login(inputs)">
                         Login
                     </md-button>
                 </md-dialog-actions>

@@ -1,12 +1,14 @@
 class LoginController {
-    constructor($mdDialog, $scope) {
+    constructor($mdDialog, $scope, $firebaseAuth, firebaseUrl) {
         'ngInject';
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
+        this.$firebaseAuth = $firebaseAuth;
+        this.firebaseUrl = firebaseUrl;
     }
 
     $onInit() {
-        this.status = '';
+        this.connectGoogle();
     }
 
     showAdvanced(ev) {
@@ -18,26 +20,38 @@ class LoginController {
             clickOutsideToClose: true,
             fullscreen: this.customFullscreen
         })
-            .then(function (answer) {
-                console.log(answer);
+            .then(function (inputs) {
+                console.log(`Authenticated successfully with payload: ${inputs.name}, ${inputs.pass}`)
             }, function () {
-                console.log('Cancel the dialog');
+                console.log('Login Failed!');
             });
     }
 
     dialogFunction($scope, $mdDialog) {
         'ngInject';
-        $scope.cancel = function() {
+        $scope.cancel = function () {
             $mdDialog.cancel();
         };
 
-        $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
+        $scope.login = function (inputs) {
+            $mdDialog.hide(inputs);
         };
     }
 
-}
+    connectGoogle() {
 
+
+        // const ref = new Firebase(this.firebaseUrl);
+
+        // this.$scope.auth = this.$firebaseAuth();
+        //
+        // this.$scope.auth.$authWithOAuthPopup("facebook").then(function(authData) {
+        //     console.log("Logged in as:", authData.uid);
+        // }).catch(function(error) {
+        //     console.log("Authentication failed:", error);
+        // });
+    }
+}
 
 const LoginComponent = {
     controller: LoginController,

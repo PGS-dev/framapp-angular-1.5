@@ -3,7 +3,8 @@ import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 import ngMessages from 'angular-messages';
 import localStorage from 'angular-local-storage';
-import firebase from 'angularfire';
+import firebase from 'firebase';
+import ngFirebase from 'angularfire';
 import componentsModule from './components';
 import pagesModule from './pages';
 import './style/sass/common.scss';
@@ -16,14 +17,17 @@ const root = angular
         ngMaterial,
         ngMessages,
         localStorage,
-        firebase,
+        ngFirebase,
         // App modules
         componentsModule,
         pagesModule
     ])
     .constant("BASE_URL", "https://woven-patrol-127817.firebaseio.com/api/v1")
+    .constant("firebaseUrl", firebase_config.FIREBASE_URL)
     .config(($stateProvider, $urlRouterProvider, $locationProvider, localStorageServiceProvider) => {
         'ngInject';
+
+        firebase.initializeApp(firebase_config.FIREBASE_CONFIG);
 
         $locationProvider.html5Mode({
             enabled: true,
