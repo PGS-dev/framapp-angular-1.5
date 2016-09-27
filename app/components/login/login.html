@@ -1,0 +1,64 @@
+<div class="LoginComponent">
+    <div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
+        <md-button class="md-primary md-raised" ng-click="$ctrl.showAdvanced($event)">
+            Sign In
+        </md-button>
+    </div>
+    <div ng-if="status" id="status">
+        <b layout="row" layout-align="center center" class="md-padding">
+            {{status}}
+        </b>
+    </div>
+
+    <script type="text/ng-template" id="loginDialog.tmpl.html">
+        <md-dialog aria-label="Login">
+            <form name="loginForm" ng-submit="submit(inputs)" ng-cloak>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Login</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon md-svg-src="../icons/ic_clear_white_24px.svg" aria-label="Close dialog"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+
+                <md-dialog-content>
+                    <div class="md-dialog-content">
+                        <md-input-container class="md-block">
+                            <label for="login">Login</label>
+                            <input type="text"
+                                   id="login"
+                                   name="login"
+                                   ng-maxlength="20"
+                                   ng-model="inputs.name" required>
+                            <div ng-messages="loginForm.login.$error"
+                                 ng-if="loginForm.login.$invalid && !loginForm.login.$pristine">
+                                <div ng-message="required">Dane pole jest wymagane</div>
+                                <div ng-message="maxlength">Wprowadzona nazwa jest za długa</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label for="pass">Password</label>
+                            <input type="password"
+                                   id="pass"
+                                   name="password"
+                                   ng-model="inputs.pass" required>
+                            <div ng-messages="loginForm.password.$error"
+                                 ng-if="loginForm.password.$invalid && !loginForm.password.$pristine">
+                                <div ng-message="required">Dane pole jest wymagane</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-dialog-content>
+
+                <md-dialog-actions layout="row">
+                    <md-button type="submit" class="md-primary md-raised" ng-disabled="loginForm.$invalid" ng-click="answer(inputs)">
+                        Login
+                    </md-button>
+                </md-dialog-actions>
+            </form>
+        </md-dialog>
+    </script>
+</div>

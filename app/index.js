@@ -3,9 +3,11 @@ import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 import ngMessages from 'angular-messages';
 import localStorage from 'angular-local-storage';
+import firebase from 'angularfire';
 import componentsModule from './components';
 import pagesModule from './pages';
 import './style/sass/common.scss';
+import * as firebase_config from '../config/firebase';
 
 const root = angular
     .module('app', [
@@ -14,6 +16,7 @@ const root = angular
         ngMaterial,
         ngMessages,
         localStorage,
+        firebase,
         // App modules
         componentsModule,
         pagesModule
