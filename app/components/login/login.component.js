@@ -1,23 +1,21 @@
 class LoginController {
-    constructor($mdDialog, $scope, firebaseConfig, firebase) {
+    constructor($mdDialog, $scope, firebaseConfig, firebase, localStorageService, $location, toastService) {
         'ngInject';
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
         this.firebaseConfig = firebaseConfig;
         this.firebase = firebase;
-        firebase.initializeApp(this.firebaseConfig.FIREBASE_CONFIG);
-
-        firebase.auth().signInWithEmailAndPassword('wojtek@wuha.pl', '123456')
-            .then(function (result) {
-                console.log('Success bitches');
-                console.log(result);
-            }).catch(function (error) {
-            console.log('fucking error');
-            console.log(error);
-        });
-
+        this.localStorageService = localStorageService;
+        this.$location = $location;
+        this.toastService = toastService;
+        firebase.initializeApp(firebaseConfig.FIREBASE_CONFIG);
     }
-    
+
+    $onInit() {
+        this.user = '';
+        this.isUserLogged();
+    }
+
     showAdvanced(ev) {
         this.$mdDialog.show({
             controller: this.dialogFunction,
@@ -27,23 +25,53 @@ class LoginController {
             clickOutsideToClose: true,
             fullscreen: this.customFullscreen
         })
-            .then(function (inputs, scope) {
-                console.log(`Authenticated successfully with payload: ${inputs.name}, ${inputs.pass}`);
+            .then(function () {
+                // Success logged
             }, function () {
-                console.log('Login Failed!');
+                console.log('Discard dialog box');
             });
     }
 
-    dialogFunction($scope, $mdDialog) {
+    dialogFunction($scope, $mdDialog, firebaseConfig, firebase, localStorageService, toastService) {
         'ngInject';
+        this.firebaseConfig = firebaseConfig;
+        this.firebase = firebase;
+        this.localStorageService = localStorageService;
+        this.toastService = toastService;
+
+        $scope.login = function (inputs) {
+            firebase.auth().signInWithEmailAndPassword(inputs.name, inputs.pass)
+                .then(result => {
+                    toastService.showSuccessToast("You have been success logged");
+                    $mdDialog.hide();
+                }).catch(error => {
+                    toastService.showWarningToast(error.message);
+            });
+        };
+
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
-
-        $scope.login = function (inputs) {
-            $mdDialog.hide(inputs);
-        };
     }
+
+    isUserLogged() {
+        this.firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                return this.user = user;
+            } else {
+                // User is not logged
+            }
+        });
+    }
+
+    logOut() {
+        this.firebase.auth().signOut().then(function() {
+            this.toastService.showSuccessToast("You have been logged out");
+        }, function(error) {
+            this.toastService.showWarningToast(error);
+        });
+    }
+
 }
 
 const LoginComponent = {

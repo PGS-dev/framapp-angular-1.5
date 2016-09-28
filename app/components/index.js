@@ -3,6 +3,7 @@ import appModule from './app';
 import categoryModule from './category';
 import footerModule from './footer';
 import loginModule from './login';
+import toastModule from './toast';
 
 const componentsModule = angular
     .module('app.components', [
@@ -10,7 +11,8 @@ const componentsModule = angular
         appModule,
         categoryModule,
         footerModule,
-        loginModule
+        loginModule,
+		toastModule
     ])
     .name;
 

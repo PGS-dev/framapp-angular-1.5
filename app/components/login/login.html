@@ -1,13 +1,16 @@
 <div class="LoginComponent">
     <div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
-        <md-button class="md-primary md-raised" ng-click="$ctrl.showAdvanced($event)">
+        <md-button ng-if="!$ctrl.user"
+                   ng-click="$ctrl.showAdvanced($event)"
+                   class="md-primary md-raised">
             Sign In
         </md-button>
-    </div>
-    <div ng-if="status" id="status">
-        <b layout="row" layout-align="center center" class="md-padding">
-            {{status}}
-        </b>
+        <md-button ng-if="$ctrl.user"
+                   ng-click="$ctrl.logOut()"
+                   ui-sref="app.main"
+                   class="md-primary md-raised">
+            Logout
+        </md-button>
     </div>
 
     <script type="text/ng-template" id="loginDialog.tmpl.html">

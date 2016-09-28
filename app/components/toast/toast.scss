@@ -1,0 +1,24 @@
+@import '../../style/sass/common';
+
+md-toast.md-success-toast-theme {
+  .md-toast-content {
+    background-color: $pgs-success;
+    color: #fff;
+  }
+}
+
+md-toast.md-warning-toast-theme {
+  .md-toast-content {
+    background-color: $pgs-error;
+    color: #fff;
+  }
+}
+
+md-toast {
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 304px;
+  text-align: center;
+}
