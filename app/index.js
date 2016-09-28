@@ -23,11 +23,10 @@ const root = angular
         pagesModule
     ])
     .constant("BASE_URL", "https://woven-patrol-127817.firebaseio.com/api/v1")
-    .constant("firebaseUrl", firebase_config.FIREBASE_URL)
+    .constant("firebaseConfig", firebase_config)
+    .constant("firebase", firebase)
     .config(($stateProvider, $urlRouterProvider, $locationProvider, localStorageServiceProvider) => {
         'ngInject';
-
-        firebase.initializeApp(firebase_config.FIREBASE_CONFIG);
 
         $locationProvider.html5Mode({
             enabled: true,

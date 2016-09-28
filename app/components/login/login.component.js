@@ -1,16 +1,23 @@
 class LoginController {
-    constructor($mdDialog, $scope, $firebaseAuth, firebaseUrl) {
+    constructor($mdDialog, $scope, firebaseConfig, firebase) {
         'ngInject';
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
-        this.$firebaseAuth = $firebaseAuth;
-        this.firebaseUrl = firebaseUrl;
-    }
+        this.firebaseConfig = firebaseConfig;
+        this.firebase = firebase;
+        firebase.initializeApp(this.firebaseConfig.FIREBASE_CONFIG);
 
-    $onInit() {
-        this.connectGoogle();
-    }
+        firebase.auth().signInWithEmailAndPassword('wojtek@wuha.pl', '123456')
+            .then(function (result) {
+                console.log('Success bitches');
+                console.log(result);
+            }).catch(function (error) {
+            console.log('fucking error');
+            console.log(error);
+        });
 
+    }
+    
     showAdvanced(ev) {
         this.$mdDialog.show({
             controller: this.dialogFunction,
@@ -20,8 +27,8 @@ class LoginController {
             clickOutsideToClose: true,
             fullscreen: this.customFullscreen
         })
-            .then(function (inputs) {
-                console.log(`Authenticated successfully with payload: ${inputs.name}, ${inputs.pass}`)
+            .then(function (inputs, scope) {
+                console.log(`Authenticated successfully with payload: ${inputs.name}, ${inputs.pass}`);
             }, function () {
                 console.log('Login Failed!');
             });
@@ -36,20 +43,6 @@ class LoginController {
         $scope.login = function (inputs) {
             $mdDialog.hide(inputs);
         };
-    }
-
-    connectGoogle() {
-
-
-        // const ref = new Firebase(this.firebaseUrl);
-
-        // this.$scope.auth = this.$firebaseAuth();
-        //
-        // this.$scope.auth.$authWithOAuthPopup("facebook").then(function(authData) {
-        //     console.log("Logged in as:", authData.uid);
-        // }).catch(function(error) {
-        //     console.log("Authentication failed:", error);
-        // });
     }
 }
 
