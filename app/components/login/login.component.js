@@ -1,11 +1,10 @@
 class LoginController {
-    constructor($mdDialog, $scope, firebaseConfig, firebase, $location, toastService) {
+    constructor($mdDialog, $scope, firebaseConfig, firebase, toastService) {
         'ngInject';
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
         this.firebaseConfig = firebaseConfig;
         this.firebase = firebase;
-        this.$location = $location;
         this.toastService = toastService;
         firebase.initializeApp(firebaseConfig.FIREBASE_CONFIG);
     }
@@ -27,8 +26,8 @@ class LoginController {
             .then(n => {
                 console.log('Success login');
             }).catch(e => {
-                console.log('Discard dialog box');
-            });
+            console.log('Discard dialog box');
+        });
     }
 
     dialogFunction($scope, $mdDialog, firebaseConfig, firebase, toastService) {
@@ -43,8 +42,8 @@ class LoginController {
                     toastService.showSuccessToast("You have been success logged");
                     $mdDialog.hide();
                 }).catch(error => {
-                    toastService.showWarningToast(error.message);
-                });
+                toastService.showWarningToast(error.message);
+            });
         };
 
         $scope.cancel = function () {
@@ -57,7 +56,7 @@ class LoginController {
             if (user) {
                 return this.user = user;
             } else {
-                // User is not logged
+                return this.user = '';
             }
         });
     }
@@ -68,8 +67,20 @@ class LoginController {
                 this.user = '';
                 this.toastService.showSuccessToast("You have been logged out");
             }).catch(error => {
-                this.toastService.showWarningToast(error);
-            });
+            this.toastService.showWarningToast(error);
+        });
+    }
+
+    updateProfile() {
+        this.user = this.firebase.auth().currentUser;
+
+        this.user.updateProfile({
+            photoURL: "https://avatars1.githubusercontent.com/u/9810880?v=3&s=466",
+        }).then(function() {
+            console.log('Done');
+        }, function(error) {
+            console.log('nope');
+        });
     }
 }
 

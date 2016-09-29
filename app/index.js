@@ -2,9 +2,11 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
 import ngMessages from 'angular-messages';
+import ngAnimate from 'angular-animate';
 import localStorage from 'angular-local-storage';
 import firebase from 'firebase';
 import ngFirebase from 'angularfire';
+import angularLoading from 'angular-loading-bar';
 import componentsModule from './components';
 import pagesModule from './pages';
 import './style/sass/common.scss';
@@ -16,16 +18,19 @@ const root = angular
         uiRouter,
         ngMaterial,
         ngMessages,
+        ngAnimate,
         localStorage,
         ngFirebase,
+        angularLoading,
+
         // App modules
         componentsModule,
         pagesModule
     ])
-    .constant("BASE_URL", "https://woven-patrol-127817.firebaseio.com/api/v1")
+    .constant("BASE_URL", firebase_config.BASE_URL)
     .constant("firebaseConfig", firebase_config)
     .constant("firebase", firebase)
-    .config(($stateProvider, $urlRouterProvider, $locationProvider, localStorageServiceProvider) => {
+    .config(($stateProvider, $urlRouterProvider, $locationProvider, localStorageServiceProvider, cfpLoadingBarProvider) => {
         'ngInject';
 
         $locationProvider.html5Mode({
@@ -46,6 +51,8 @@ const root = angular
 
         $urlRouterProvider.when('', '/');
         $urlRouterProvider.otherwise('/');
+
+        cfpLoadingBarProvider.includeBar = true;
     })
     .name;
 

@@ -7,14 +7,40 @@
         <h1 class="md-toolbar-tools">Category</h1>
     </md-toolbar>
     <md-content layout="column">
-        <md-button ng-repeat="tile in $ctrl.data"
-                   ui-sref="app.category({ id:tile.id })"
+        <md-button ng-repeat="tile in $ctrl.objKeys"
+                   ui-sref="app.category({ id:tile })"
                    class="md-primary"
-                   ng-click="$ctrl.selectCategory(tile.id)"
-                   ng-class="$ctrl.getCategoryClass(tile.id)"
-                   aria-label="Category {{ tile.title }}">
-            <span>{{ tile.title }}</span>
+                   ng-click="$ctrl.selectCategory(tile)"
+                   ng-class="$ctrl.getCategoryClass(tile)"
+                   aria-label="Category {{ tile }}">
+            <span>{{ tile }}</span>
         </md-button>
     </md-content>
+
+    <div ng-if="$ctrl.user">
+        <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">Admin</h1>
+        </md-toolbar>
+        <md-content layout="column">
+
+            <md-button class="md-primary"
+                       ng-click="$ctrl.selectCategory('products')"
+
+                       ng-class="$ctrl.getCategoryClass('products')"
+                       aria-label="Products">
+                <span>Products</span>
+            </md-button>
+
+            <md-button class="md-primary"
+                       ng-click="$ctrl.selectCategory('category')"
+                       ng-class="$ctrl.getCategoryClass('category')"
+                       aria-label="Category">
+                <span>Category</span>
+            </md-button>
+
+        </md-content>
+    </div>
+
+
     <div flex></div>
 </md-sidenav>

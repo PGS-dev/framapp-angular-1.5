@@ -5,12 +5,36 @@
                    class="md-primary md-raised">
             Sign In
         </md-button>
-        <md-button ng-if="$ctrl.user"
-                   ng-click="$ctrl.logOut()"
-                   ui-sref="app.main"
-                   class="md-primary md-raised">
-            Logout
-        </md-button>
+        <md-menu md-offset="0 -7"
+                 ng-if="$ctrl.user">
+            <md-list-item ng-click="$mdOpenMenu($event)">
+                <img ng-if="!$ctrl.user.photoURL"
+                     ng-src="../image/avatar.jpg"
+                     alt="avatar"
+                     class="md-avatar">
+                <img ng-if="$ctrl.user.photoURL"
+                     ng-src="{{$ctrl.user.photoURL}}"
+                     alt="avatar"
+                     class="md-avatar">
+                <span>{{$ctrl.user.displayName}}</span>
+            </md-list-item>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button>
+                        <md-icon md-svg-icon="../icons/ic_person_black_24px.svg"></md-icon>
+                        Profile
+                    </md-button>
+                </md-menu-item>
+                <md-menu-divider></md-menu-divider>
+                <md-menu-item>
+                    <md-button ng-click="$ctrl.logOut()"
+                               ui-sref="app.main">
+                        <md-icon md-svg-icon="../icons/ic_directions_run_black_24px.svg"></md-icon>
+                    Logout
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
     </div>
 
     <script type="text/ng-template" id="loginDialog.tmpl.html">
@@ -33,7 +57,7 @@
                             <input type="text"
                                    id="login"
                                    name="login"
-                                   ng-maxlength="20"
+                                   ng-maxlength="90"
                                    ng-model="inputs.name" required>
                             <div ng-messages="loginForm.login.$error"
                                  ng-if="loginForm.login.$invalid && !loginForm.login.$pristine">

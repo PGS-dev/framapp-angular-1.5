@@ -1,4 +1,4 @@
-export const FIREBASE_URL = 'https://project-5613440220430148247.firebaseio.com';
+export const FIREBASE_URL = 'https://woven-patrol-127817.firebaseio.com';
 export const BASE_URL = `${FIREBASE_URL}/api/v1`;
 export const FIREBASE_CONFIG = {
   apiKey: "AIzaSyBn55AKEguO5k4BP6px61J--UbdXiyu9YE",
