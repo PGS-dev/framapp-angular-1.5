@@ -1,11 +1,10 @@
 class LoginController {
-    constructor($mdDialog, $scope, firebaseConfig, firebase, localStorageService, $location, toastService) {
+    constructor($mdDialog, $scope, firebaseConfig, firebase, $location, toastService) {
         'ngInject';
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
         this.firebaseConfig = firebaseConfig;
         this.firebase = firebase;
-        this.localStorageService = localStorageService;
         this.$location = $location;
         this.toastService = toastService;
         firebase.initializeApp(firebaseConfig.FIREBASE_CONFIG);
@@ -25,18 +24,17 @@ class LoginController {
             clickOutsideToClose: true,
             fullscreen: this.customFullscreen
         })
-            .then(function () {
-                // Success logged
-            }, function () {
+            .then(n => {
+                console.log('Success login');
+            }).catch(e => {
                 console.log('Discard dialog box');
             });
     }
 
-    dialogFunction($scope, $mdDialog, firebaseConfig, firebase, localStorageService, toastService) {
+    dialogFunction($scope, $mdDialog, firebaseConfig, firebase, toastService) {
         'ngInject';
         this.firebaseConfig = firebaseConfig;
         this.firebase = firebase;
-        this.localStorageService = localStorageService;
         this.toastService = toastService;
 
         $scope.login = function (inputs) {
@@ -46,7 +44,7 @@ class LoginController {
                     $mdDialog.hide();
                 }).catch(error => {
                     toastService.showWarningToast(error.message);
-            });
+                });
         };
 
         $scope.cancel = function () {
@@ -65,13 +63,14 @@ class LoginController {
     }
 
     logOut() {
-        this.firebase.auth().signOut().then(function() {
-            this.toastService.showSuccessToast("You have been logged out");
-        }, function(error) {
-            this.toastService.showWarningToast(error);
-        });
+        this.firebase.auth().signOut()
+            .then(n => {
+                this.user = '';
+                this.toastService.showSuccessToast("You have been logged out");
+            }).catch(error => {
+                this.toastService.showWarningToast(error);
+            });
     }
-
 }
 
 const LoginComponent = {
