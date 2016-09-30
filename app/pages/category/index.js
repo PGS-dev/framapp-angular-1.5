@@ -3,7 +3,7 @@ import './category.scss';
 import CategoryService from './category.service';
 
 const categoryViewModule = angular
-    .module('app.components.categoryViewModule', [])
+    .module('app.pages.categoryViewModule', [])
     .component('categoryViewComponent', CategoryViewComponent)
     .service('categoryService', CategoryService)
     .config(($stateProvider) => {
@@ -11,7 +11,7 @@ const categoryViewModule = angular
 
         $stateProvider
             .state('app.category', {
-                url: '/:id',
+                url: '/category/:id',
                 views: {
                     'main@': 'categoryViewComponent'
                 }

@@ -3,7 +3,7 @@ import './product.scss';
 import ProductService from './product.service';
 
 const productViewModule = angular
-    .module('app.components.productViewModule', [])
+    .module('app.pages.productViewModule', [])
     .component('productViewComponent', ProductViewComponent)
     .service('productService', ProductService)
     .config(($stateProvider) => {

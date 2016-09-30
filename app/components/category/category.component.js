@@ -41,7 +41,6 @@ class CategoryController {
             }
         });
     }
-
 }
 
 const CategoryComponent = {

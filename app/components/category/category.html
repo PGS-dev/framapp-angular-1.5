@@ -3,6 +3,7 @@
         md-component-id="left"
         layout="column"
         md-is-locked-open="$mdMedia('gt-sm')">
+
     <md-toolbar class="md-theme-light">
         <h1 class="md-toolbar-tools">Category</h1>
     </md-toolbar>
@@ -24,23 +25,22 @@
         <md-content layout="column">
 
             <md-button class="md-primary"
+                       ui-sref="app.products"
                        ng-click="$ctrl.selectCategory('products')"
-
                        ng-class="$ctrl.getCategoryClass('products')"
                        aria-label="Products">
                 <span>Products</span>
             </md-button>
 
             <md-button class="md-primary"
-                       ng-click="$ctrl.selectCategory('category')"
-                       ng-class="$ctrl.getCategoryClass('category')"
-                       aria-label="Category">
-                <span>Category</span>
+                       ui-sref="app.categories"
+                       ng-click="$ctrl.selectCategory('categories')"
+                       ng-class="$ctrl.getCategoryClass('categories')"
+                       aria-label="Categories">
+                <span>Categories</span>
             </md-button>
-
         </md-content>
     </div>
-
 
     <div flex></div>
 </md-sidenav>
