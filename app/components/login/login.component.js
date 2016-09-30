@@ -26,7 +26,8 @@ class LoginController {
         })
             .then(n => {
                 console.log('Success login');
-            }).catch(e => {
+            })
+            .catch(e => {
                 console.log('Discard dialog box');
         });
     }
@@ -42,7 +43,8 @@ class LoginController {
                 .then(result => {
                     toastService.showSuccessToast("You have been success logged");
                     $mdDialog.hide();
-                }).catch(error => {
+                })
+                .catch(error => {
                     toastService.showWarningToast(error.message);
             });
         };
@@ -67,7 +69,8 @@ class LoginController {
             .then(n => {
                 this.userData = {};
                 this.toastService.showSuccessToast("You have been logged out");
-            }).catch(error => {
+            })
+            .catch(error => {
                 this.toastService.showWarningToast(error);
         });
     }
