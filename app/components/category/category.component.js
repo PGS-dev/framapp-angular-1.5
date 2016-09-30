@@ -5,7 +5,6 @@ class CategoryController {
         this.categoryNavService = categoryNavService;
         this.$state = $state;
         this.firebase = firebase;
-        console.log(this.$state.params);
     }
 
     $onInit() {
