@@ -6,11 +6,12 @@ class LoginController {
         this.firebaseConfig = firebaseConfig;
         this.firebase = firebase;
         this.toastService = toastService;
+
         firebase.initializeApp(firebaseConfig.FIREBASE_CONFIG);
     }
 
     $onInit() {
-        this.user = '';
+        this.userData = {};
         this.isUserLogged();
     }
 
@@ -26,7 +27,7 @@ class LoginController {
             .then(n => {
                 console.log('Success login');
             }).catch(e => {
-            console.log('Discard dialog box');
+                console.log('Discard dialog box');
         });
     }
 
@@ -42,7 +43,7 @@ class LoginController {
                     toastService.showSuccessToast("You have been success logged");
                     $mdDialog.hide();
                 }).catch(error => {
-                toastService.showWarningToast(error.message);
+                    toastService.showWarningToast(error.message);
             });
         };
 
@@ -52,11 +53,11 @@ class LoginController {
     }
 
     isUserLogged() {
-        this.firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                return this.user = user;
+        this.firebase.auth().onAuthStateChanged(userData => {
+            if (userData) {
+                return this.userData = userData;
             } else {
-                return this.user = '';
+                return this.userData = {};
             }
         });
     }
@@ -64,22 +65,10 @@ class LoginController {
     logOut() {
         this.firebase.auth().signOut()
             .then(n => {
-                this.user = '';
+                this.userData = {};
                 this.toastService.showSuccessToast("You have been logged out");
             }).catch(error => {
-            this.toastService.showWarningToast(error);
-        });
-    }
-
-    updateProfile() {
-        this.user = this.firebase.auth().currentUser;
-
-        this.user.updateProfile({
-            photoURL: "https://avatars1.githubusercontent.com/u/9810880?v=3&s=466",
-        }).then(function() {
-            console.log('Done');
-        }, function(error) {
-            console.log('nope');
+                this.toastService.showWarningToast(error);
         });
     }
 }

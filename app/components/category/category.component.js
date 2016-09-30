@@ -5,14 +5,15 @@ class CategoryController {
         this.categoryNavService = categoryNavService;
         this.$state = $state;
         this.firebase = firebase;
+        console.log(this.$state.params);
     }
 
     $onInit() {
         this.getCategories();
         this.data = {};
-        this.objKeys = [];
+        this.categoryObjectKeys = [];
         this.selectedCategory = this.$state.params.id;
-        this.user = '';
+        this.userData = {};
         this.isUserLogged();
     }
 
@@ -28,16 +29,16 @@ class CategoryController {
         this.dataService.getCategories()
             .then(data => {
                 this.data = data;
-                this.objKeys = this.categoryNavService.getObjectKeys(this.data);
+                this.categoryObjectKeys = this.categoryNavService.getObjectKeys(this.data);
             })
     }
 
     isUserLogged() {
-        this.firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                return this.user = user;
+        this.firebase.auth().onAuthStateChanged(userData => {
+            if (userData) {
+                return this.userData = userData;
             } else {
-                return this.user = '';
+                return this.userData = {};
             }
         });
     }

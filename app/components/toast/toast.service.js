@@ -16,7 +16,6 @@ export default class ToastService {
     }
 
     showWarningToast(message = 'Something went wrong') {
-
         this.$mdToast.show(
             this.$mdToast
                 .simple()

@@ -8,7 +8,7 @@
         <h1 class="md-toolbar-tools">Category</h1>
     </md-toolbar>
     <md-content layout="column">
-        <md-button ng-repeat="tile in $ctrl.objKeys"
+        <md-button ng-repeat="tile in $ctrl.categoryObjectKeys"
                    ui-sref="app.category({ id:tile })"
                    class="md-primary"
                    ng-click="$ctrl.selectCategory(tile)"
@@ -18,7 +18,7 @@
         </md-button>
     </md-content>
 
-    <div ng-if="$ctrl.user">
+    <div ng-if="$ctrl.userData.uid">
         <md-toolbar class="md-theme-light">
             <h1 class="md-toolbar-tools">Admin</h1>
         </md-toolbar>

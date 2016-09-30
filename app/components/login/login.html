@@ -1,22 +1,22 @@
 <div class="LoginComponent">
     <div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
-        <md-button ng-if="!$ctrl.user"
+        <md-button ng-if="!$ctrl.userData.uid"
                    ng-click="$ctrl.showAdvanced($event)"
                    class="md-primary md-raised">
             Sign In
         </md-button>
         <md-menu md-offset="0 -7"
-                 ng-if="$ctrl.user">
+                 ng-if="$ctrl.userData.uid">
             <md-list-item ng-click="$mdOpenMenu($event)">
-                <img ng-if="!$ctrl.user.photoURL"
+                <img ng-if="!$ctrl.userData.photoURL"
                      ng-src="../image/avatar.jpg"
                      alt="avatar"
                      class="md-avatar">
-                <img ng-if="$ctrl.user.photoURL"
-                     ng-src="{{$ctrl.user.photoURL}}"
+                <img ng-if="$ctrl.userData.photoURL"
+                     ng-src="{{$ctrl.userData.photoURL}}"
                      alt="avatar"
                      class="md-avatar">
-                <span>{{$ctrl.user.displayName}}</span>
+                <span>{{$ctrl.userData.displayName}}</span>
             </md-list-item>
             <md-menu-content width="4">
                 <md-menu-item>
