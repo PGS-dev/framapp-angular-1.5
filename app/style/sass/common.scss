@@ -21,17 +21,16 @@
   box-shadow: #000 1px 0 3px 1px;
 }
 
-.margin-lft {
-  margin-left: 17.1%;
-  list-style: none;
-  padding: 0;
-  li {
-    display: inline-block;
-  }
-}
-
 .pullleft {
   margin-left: 320px;
+}
+
+.pgs-float-r {
+  float: right;
+}
+
+.pgs-float-l {
+  float: left;
 }
 
 md-backdrop {

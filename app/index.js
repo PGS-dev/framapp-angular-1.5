@@ -6,7 +6,8 @@ import ngAnimate from 'angular-animate';
 import localStorage from 'angular-local-storage';
 import firebase from 'firebase';
 import ngFirebase from 'angularfire';
-import angularLoading from 'angular-loading-bar';
+import ngLoading from 'angular-loading-bar';
+import ngPagination from 'angular-utils-pagination';
 import componentsModule from './components';
 import pagesModule from './pages';
 import './style/sass/common.scss';
@@ -21,7 +22,8 @@ const root = angular
         ngAnimate,
         localStorage,
         ngFirebase,
-        angularLoading,
+        ngLoading,
+        ngPagination,
 
         // App modules
         componentsModule,

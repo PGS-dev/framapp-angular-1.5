@@ -2,14 +2,26 @@
     <md-content ng-class="{pullleft: $ctrl.$mdMedia('gt-sm')}"
                 class="pgs-mainContent" layout-padding>
         <div layout="column" layout-align="top left">
-            <md-subheader class="md-no-sticky">Category list</md-subheader>
-            <md-list-item ng-repeat="tile in $ctrl.data">
-                <md-checkbox ng-model="products.selected"></md-checkbox>
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <md-subheader class="md-no-sticky">Category list</md-subheader>
+                </div>
+                <div flex>
+                    <md-button class="md-raised md-primary pgs-float-r">Add category</md-button>
+                </div>
+            </div>
+            <md-list-item dir-paginate="tile in $ctrl.data | itemsPerPage: 10">
                 <p>{{tile.title}}</p>
-                <md-icon class="md-secondary" ng-click="null" aria-label="Settings" md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
-                <md-icon class="md-secondary" ng-click="null" aria-label="Delete" md-svg-icon="../icons/ic_delete_black_24px.svg"></md-icon>
+                <md-icon class="md-secondary" ng-click="null" aria-label="Settings"
+                         md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
+                <md-icon class="md-secondary" ng-click="null" aria-label="Delete"
+                         md-svg-icon="../icons/ic_delete_black_24px.svg"></md-icon>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
+            <dir-pagination-controls boundary-links="true"
+                                     template-url="../template/dirPagination.tpl.html"
+                                     max-size="5">
+            </dir-pagination-controls>
         </div>
         <div flex></div>
     </md-content>
