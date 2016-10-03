@@ -10,6 +10,8 @@ class ProductsAdminController {
     $onInit() {
         this.redirectUser();
         this.getProducts();
+        this.getCategories();
+        this.getCategoryFromURL = this.$location.search().category;
     }
 
     redirectUser() {
@@ -22,8 +24,15 @@ class ProductsAdminController {
 
     getProducts() {
         this.dataService.getProducts()
-            .then(data => {
-                this.data = data;
+            .then(productsData => {
+                this.productsData = productsData;
+            })
+    }
+
+    getCategories() {
+        this.dataService.getCategories()
+            .then(categoriesData => {
+                this.categoriesData = categoriesData;
             })
     }
 }

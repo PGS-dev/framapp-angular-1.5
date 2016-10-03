@@ -9,12 +9,24 @@
                         <input ng-model="products.title">
                     </md-input-container>
                 </div>
+                <div flex="33">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Category</label>
+                        <md-select ng-model="products.category">
+                            <md-option ng-repeat="categories in $ctrl.categoriesData"
+                                       value="{{categories.id}}"
+                                       ng-selected="{{categories.id == $ctrl.getCategoryFromURL}}">
+                                {{categories.title}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
                 <div flex>
                     <md-button class="md-raised md-primary pgs-float-r">Add product</md-button>
                 </div>
             </div>
-            <md-list-item dir-paginate="tile in $ctrl.data | filter: products | itemsPerPage: 25">
-                <p>{{tile.title}}</p>
+            <md-list-item dir-paginate="products in $ctrl.productsData | filter: products | itemsPerPage: 15">
+                <p>{{products.title}} <span class="desc">{{products.category}}</span></p>
                 <md-icon class="md-secondary" ng-click="null" aria-label="Settings"
                          md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
                 <md-icon class="md-secondary" ng-click="null" aria-label="Delete"

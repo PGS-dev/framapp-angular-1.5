@@ -4,4 +4,10 @@
   md-input-container {
     margin: 0;
   }
+  md-list-item {
+    .desc {
+      font-size: 0.8em;
+      color: rgba(0, 0, 0, 0.38)
+    }
+  }
 }
