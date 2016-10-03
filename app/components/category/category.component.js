@@ -9,7 +9,7 @@ class CategoryController {
 
     $onInit() {
         this.getCategories();
-        this.data = {};
+        this.data = [];
         this.categoryObjectKeys = [];
         this.selectedCategory = this.$state.params.id;
         this.userData = {};
