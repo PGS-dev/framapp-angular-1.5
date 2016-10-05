@@ -1,0 +1,46 @@
+<div class="CategoriesAdmin" layout="column" ng-cloak>
+    <md-content ng-class="{pullleft: $ctrl.$mdMedia('gt-sm')}"
+                class="pgs-mainContent" layout-padding>
+        <div layout="row" layout-align="center">
+            <md-content flex="33" layout-padding>
+                <form name="createCategory" ng-submit="$ctrl.submit(inputs)">
+                    <md-input-container class="md-block">
+                        <label>Category name</label>
+                        <input type="text"
+                               name="categoryTitle"
+                               ng-model="inputs.title"
+                               ng-maxlength="30" required>
+                        <div ng-messages="createCategory.categoryTitle.$error"
+                             ng-if="createCategory.categoryTitle.$invalid && !createCategory.categoryTitle.$pristine">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="maxlength">The given expression is too long</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Description</label>
+                        <textarea name="categoryDescription"
+                                  ng-model="inputs.description"
+                                  md-maxlength="200"
+                                  rows="5"
+                                  required>
+                        </textarea>
+                        <div ng-messages="createCategory.categoryDescription.$error"
+                             ng-if="createCategory.categoryDescription.$invalid && !createCategory.categoryDescription.$pristine">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="maxlength">The given expression is too long</div>
+                        </div>
+                    </md-input-container>
+                    <md-button type="submit"
+                               class="md-primary md-raised"
+                               ng-disabled="createCategory.$invalid"
+                               ng-click="$ctrl.createNewCategory(inputs)"
+                               ui-sref="app.categories">
+                        Create category
+                    </md-button>
+                </form>
+            </md-content>
+        </div>
+        <div flex></div>
+    </md-content>
+</div>

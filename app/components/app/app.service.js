@@ -25,7 +25,6 @@ class DataService {
     responseError(response) {
         console.log(response);
     }
-
 }
 
 export default DataService;

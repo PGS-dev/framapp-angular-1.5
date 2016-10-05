@@ -7,14 +7,20 @@
                     <md-subheader class="md-no-sticky">Category list</md-subheader>
                 </div>
                 <div flex>
-                    <md-button class="md-raised md-primary pgs-float-r">Add category</md-button>
+                    <md-button ui-sref="app.category-create" class="md-raised md-primary pgs-float-r">Create new
+                        category
+                    </md-button>
                 </div>
             </div>
             <md-list-item dir-paginate="tile in $ctrl.data | itemsPerPage: 10">
                 <p>{{tile.title}}</p>
-                <md-icon class="md-secondary" ng-click="null" aria-label="Settings"
+                <md-icon class="md-secondary"
+                         ng-click="null"
+                         aria-label="Settings"
                          md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
-                <md-icon class="md-secondary" ng-click="null" aria-label="Delete"
+                <md-icon class="md-secondary"
+                         ng-click="$ctrl.deleteCategory(tile.id, tile.title)"
+                         aria-label="Delete"
                          md-svg-icon="../icons/ic_delete_black_24px.svg"></md-icon>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
@@ -25,4 +31,30 @@
         </div>
         <div flex></div>
     </md-content>
+
+    <script type="text/ng-template" id="deleteCategoryDialog.tmpl.html">
+        <md-dialog aria-label="Delete category">
+            <form ng-cloak>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Delete category</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon md-svg-src="../icons/ic_clear_white_24px.svg" aria-label="Close dialog"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <div class="md-dialog-content">
+                        <p>This category will be delete, are you sure about that?</p>
+                    </div>
+                </md-dialog-content>
+                <md-dialog-actions layout="row">
+                    <md-button class="md-raised md-warn" ng-click="delete()">
+                        Delete
+                    </md-button>
+                </md-dialog-actions>
+            </form>
+        </md-dialog>
+    </script>
 </div>

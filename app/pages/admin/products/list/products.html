@@ -13,6 +13,9 @@
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Category</label>
                         <md-select ng-model="products.category">
+                            <md-option value="">
+                                All
+                            </md-option>
                             <md-option ng-repeat="categories in $ctrl.categoriesData"
                                        value="{{categories.id}}"
                                        ng-selected="{{categories.id == $ctrl.getCategoryFromURL}}">

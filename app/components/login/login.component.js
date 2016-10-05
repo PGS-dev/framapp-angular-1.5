@@ -15,14 +15,12 @@ class LoginController {
         this.isUserLogged();
     }
 
-    showAdvanced(ev) {
+    showAdvanced() {
         this.$mdDialog.show({
-            controller: this.dialogFunction,
+            controller: this.dialogLoginFunction,
             templateUrl: 'loginDialog.tmpl.html',
             parent: angular.element(document.body),
-            targetEvent: ev,
             clickOutsideToClose: true,
-            fullscreen: this.customFullscreen
         })
             .then(n => {
                 console.log('Success login');
@@ -32,9 +30,8 @@ class LoginController {
         });
     }
 
-    dialogFunction($scope, $mdDialog, firebaseConfig, firebase, toastService) {
+    dialogLoginFunction($scope, $mdDialog, firebase, toastService) {
         'ngInject';
-        this.firebaseConfig = firebaseConfig;
         this.firebase = firebase;
         this.toastService = toastService;
 
