@@ -1,9 +1,10 @@
 class DataService {
-    constructor($http, BASE_URL) {
+    constructor($http, BASE_URL, firebase) {
         'ngInject';
 
         this.$http = $http;
         this.BASE_URL = BASE_URL;
+        this.firebase = firebase;
     }
 
     getCategories() {
@@ -15,11 +16,14 @@ class DataService {
     }
 
     getProducts() {
-        return this.$http.get(`${this.BASE_URL}/products.json`)
-            .then((response) => {
-                return response.data;
-            })
-            .catch(this.responseError);
+        const productsArray = this.firebase.database().ref('api/v1').child('products');
+        productsArray.on("value", snap => {
+            this.sendProducts(snap.val());
+        })
+    }
+
+    sendProducts(data) {
+        console.log(data);
     }
 
     responseError(response) {

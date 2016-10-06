@@ -8,7 +8,7 @@ The implementation of these same functional requirements based on different tech
 
 <dl>
 	<dt>Categories for admin</dt>
-	<dd>Like admin we can create and delete categories.</dd>
+	<dd>As an admin we can create and delete categories.</dd>
 	
 	<dt>Product Page</dt>
 	<dd>You can see product details page.</dd>

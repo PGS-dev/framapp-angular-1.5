@@ -3,7 +3,8 @@ class HomePageService {
         this.$state = $state;
     }
 
-    filterProductsByPromoted(array) {
+    filterProductsByPromoted(object) {
+        let array = Object.keys(object).map((k) => object[k]);
         return array.filter(n => n.promoted === true);
     }
 }

@@ -1,10 +1,12 @@
 class ProductsAdminController {
-    constructor($mdMedia, $location, firebase, dataService) {
+    constructor($mdMedia, $mdDialog, $location, firebase, dataService, toastService) {
         'ngInject';
         this.$mdMedia = $mdMedia;
+        this.$mdDialog = $mdDialog;
         this.$location = $location;
         this.firebase = firebase;
         this.dataService = dataService;
+        this.toastService = toastService;
     }
 
     $onInit() {
@@ -23,17 +25,41 @@ class ProductsAdminController {
     }
 
     getProducts() {
-        this.dataService.getProducts()
-            .then(productsData => {
-                this.productsData = productsData;
-            })
+        this.dataService.getProducts();
     }
 
     getCategories() {
         this.dataService.getCategories()
             .then(categoriesData => {
                 this.categoriesData = categoriesData;
+            });
+    }
+
+    deleteProduct(productId, productTitle) {
+        this.$mdDialog.show({
+            controller: this.dialogDeleteProductFunction,
+            templateUrl: 'deleteProductDialog.tmpl.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+        })
+            .then(n => {
+                this.firebase.database().ref('api/v1/products').child(productId).remove();
+                this.toastService.showSuccessToast(`Product '${productTitle}' has been removed`);
+                this.productDataWithObjectKey = {};
+                this.getProducts();
             })
+            .catch(e => {
+                console.log('Discard dialog box');
+            });
+    }
+
+    dialogDeleteProductFunction($scope, $mdDialog) {
+        $scope.delete = function () {
+            $mdDialog.hide();
+        };
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
     }
 }
 

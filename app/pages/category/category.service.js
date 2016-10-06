@@ -3,7 +3,8 @@ class CategoryService {
         this.$state = $state;
     }
 
-    filterProductsByCategory(array) {
+    filterProductsByCategory(object) {
+        let array = Object.keys(object).map((k) => object[k]);
         return array.filter(n => n.category === this.$state.params.id);
     }
 }

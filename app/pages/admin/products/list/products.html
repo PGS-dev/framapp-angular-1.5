@@ -2,7 +2,7 @@
     <md-content ng-class="{pullleft: $ctrl.$mdMedia('gt-sm')}"
                 class="pgs-mainContent" layout-padding>
         <div layout="column" layout-align="top left">
-            <div layout="row" layout-xs="column">
+            <div layout="row">
                 <div flex="33">
                     <md-input-container class="md-block">
                         <label>Search products</label>
@@ -28,19 +28,46 @@
                     <md-button class="md-raised md-primary pgs-float-r">Add product</md-button>
                 </div>
             </div>
-            <md-list-item dir-paginate="products in $ctrl.productsData | filter: products | itemsPerPage: 15">
-                <p>{{products.title}} <span class="desc">{{products.category}}</span></p>
-                <md-icon class="md-secondary" ng-click="null" aria-label="Settings"
+            <md-list-item ng-repeat="(key, data) in $ctrl.productsData">
+                <p>{{data.title}} <span class="desc">{{data.category}}</span></p>
+                <md-icon class="md-secondary"
+                         ng-click="null"
+                         aria-label="Settings"
                          md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
-                <md-icon class="md-secondary" ng-click="null" aria-label="Delete"
+                <md-icon class="md-secondary"
+                         ng-click="$ctrl.deleteProduct(key, data.title)"
+                         aria-label="Delete"
                          md-svg-icon="../icons/ic_delete_black_24px.svg"></md-icon>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
-            <dir-pagination-controls boundary-links="true"
-                                     template-url="../template/dirPagination.tpl.html"
-                                     max-size="5">
-            </dir-pagination-controls>
+
         </div>
         <div flex></div>
     </md-content>
+
+    <script type="text/ng-template" id="deleteProductDialog.tmpl.html">
+        <md-dialog aria-label="Delete product">
+            <form ng-cloak>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Delete product</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon md-svg-src="../icons/ic_clear_white_24px.svg" aria-label="Close dialog"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <div class="md-dialog-content">
+                        <p>This product will be delete, are you sure about that?</p>
+                    </div>
+                </md-dialog-content>
+                <md-dialog-actions layout="row">
+                    <md-button class="md-raised md-warn" ng-click="delete()">
+                        Delete
+                    </md-button>
+                </md-dialog-actions>
+            </form>
+        </md-dialog>
+    </script>
 </div>
