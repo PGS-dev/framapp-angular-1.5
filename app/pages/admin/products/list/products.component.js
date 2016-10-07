@@ -1,19 +1,17 @@
 class ProductsAdminController {
-    constructor($mdMedia, $mdDialog, $location, firebase, dataService, toastService) {
+    constructor($mdMedia, $mdDialog, $location, firebase, toastService, $firebaseObject) {
         'ngInject';
         this.$mdMedia = $mdMedia;
         this.$mdDialog = $mdDialog;
         this.$location = $location;
         this.firebase = firebase;
-        this.dataService = dataService;
         this.toastService = toastService;
+        this.$firebaseObject = $firebaseObject;
     }
 
     $onInit() {
         this.redirectUser();
         this.getProducts();
-        this.getCategories();
-        this.getCategoryFromURL = this.$location.search().category;
     }
 
     redirectUser() {
@@ -25,18 +23,13 @@ class ProductsAdminController {
     }
 
     getProducts() {
-        this.dataService.getProducts();
-    }
-
-    getCategories() {
-        this.dataService.getCategories()
-            .then(categoriesData => {
-                this.categoriesData = categoriesData;
-            });
+        const dbRefObjectProducts = this.firebase.database().ref('api/v1').child('products');
+        this.productDataFire = this.$firebaseObject(dbRefObjectProducts);
     }
 
     deleteProduct(productId, productTitle) {
         this.$mdDialog.show({
+            locals: {selectedTitle: productTitle},
             controller: this.dialogDeleteProductFunction,
             templateUrl: 'deleteProductDialog.tmpl.html',
             parent: angular.element(document.body),
@@ -45,15 +38,15 @@ class ProductsAdminController {
             .then(n => {
                 this.firebase.database().ref('api/v1/products').child(productId).remove();
                 this.toastService.showSuccessToast(`Product '${productTitle}' has been removed`);
-                this.productDataWithObjectKey = {};
-                this.getProducts();
             })
             .catch(e => {
                 console.log('Discard dialog box');
             });
     }
 
-    dialogDeleteProductFunction($scope, $mdDialog) {
+    dialogDeleteProductFunction($scope, $mdDialog, selectedTitle) {
+        $scope.selectedTitle = selectedTitle;
+
         $scope.delete = function () {
             $mdDialog.hide();
         };

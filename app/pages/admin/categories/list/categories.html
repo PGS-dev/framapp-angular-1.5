@@ -12,22 +12,18 @@
                     </md-button>
                 </div>
             </div>
-            <md-list-item dir-paginate="tile in $ctrl.data | itemsPerPage: 10">
-                <p>{{tile.title}}</p>
+            <md-list-item ng-repeat="(categoryKey, categoryData) in $ctrl.categoriesDataFire">
+                <p>{{categoryData.title}}</p>
                 <md-icon class="md-secondary"
                          ng-click="null"
                          aria-label="Settings"
                          md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
                 <md-icon class="md-secondary"
-                         ng-click="$ctrl.deleteCategory(tile.id, tile.title)"
+                         ng-click="$ctrl.deleteCategory(categoryKey, categoryData.title)"
                          aria-label="Delete"
                          md-svg-icon="../icons/ic_delete_black_24px.svg"></md-icon>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
-            <dir-pagination-controls boundary-links="true"
-                                     template-url="../template/dirPagination.tpl.html"
-                                     max-size="5">
-            </dir-pagination-controls>
         </div>
         <div flex></div>
     </md-content>
@@ -46,7 +42,7 @@
                 </md-toolbar>
                 <md-dialog-content>
                     <div class="md-dialog-content">
-                        <p>This category will be delete, are you sure about that?</p>
+                        <p>`{{selectedTitle}}` category will be delete, are you sure about that?</p>
                     </div>
                 </md-dialog-content>
                 <md-dialog-actions layout="row">

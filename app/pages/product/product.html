@@ -3,15 +3,15 @@
                 class="pgs-mainContent" layout-padding>
         <div layout="column" layout-align="top left">
 
-            <md-card md-theme-watch>
+            <md-card ng-repeat="product in $ctrl.productData" md-theme-watch>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">{{$ctrl.productData[0].title}}</span>
-                        <span class="md-subhead">{{$ctrl.productData[0].description}}</span>
+                        <span class="md-headline">{{product.title}}</span>
+                        <span class="md-subhead">{{product.description}}</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-lg card-media">
-                            <img ng-src="{{$ctrl.productData[0].imageUrl}}"/>
+                            <img ng-src="{{product.imageUrl}}"/>
                         </div>
                     </md-card-title-media>
                 </md-card-title>

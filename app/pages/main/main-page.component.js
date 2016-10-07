@@ -1,23 +1,18 @@
 class MainPageController {
-    constructor(dataService, homePageService, $mdMedia) {
+    constructor($mdMedia, firebase, $firebaseObject) {
         'ngInject';
-        this.dataService = dataService;
-        this.homePageService = homePageService;
         this.$mdMedia = $mdMedia;
+        this.firebase = firebase;
+        this.$firebaseObject = $firebaseObject;
     }
 
     $onInit() {
         this.getProducts();
-        this.data = [];
-        this.promotedData = [];
     }
 
     getProducts() {
-        this.dataService.getProducts()
-            .then(data => {
-                this.data = data;
-                this.promotedData = this.homePageService.filterProductsByPromoted(this.data);
-            })
+        const dbRefObjectProducts = this.firebase.database().ref('api/v1').child('products').orderByChild('promoted').equalTo(true);
+        this.promotedData = this.$firebaseObject(dbRefObjectProducts);
     }
 
 }

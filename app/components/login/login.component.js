@@ -27,7 +27,7 @@ class LoginController {
             })
             .catch(e => {
                 console.log('Discard dialog box');
-        });
+            });
     }
 
     dialogLoginFunction($scope, $mdDialog, firebase, toastService) {
@@ -43,7 +43,7 @@ class LoginController {
                 })
                 .catch(error => {
                     toastService.showWarningToast(error.message);
-            });
+                });
         };
 
         $scope.cancel = function () {
@@ -69,7 +69,7 @@ class LoginController {
             })
             .catch(error => {
                 this.toastService.showWarningToast(error);
-        });
+            });
     }
 }
 

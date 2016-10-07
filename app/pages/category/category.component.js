@@ -1,23 +1,19 @@
 class CategoryController {
-    constructor(dataService, categoryService, $mdMedia) {
+    constructor($mdMedia, firebase, $firebaseObject, $state) {
         'ngInject';
-        this.dataService = dataService;
-        this.categoryService = categoryService;
         this.$mdMedia = $mdMedia;
+        this.firebase = firebase;
+        this.$firebaseObject = $firebaseObject;
+        this.$state = $state;
     }
 
     $onInit() {
         this.getProducts();
-        this.data = [];
-        this.categoryData = [];
     }
 
     getProducts() {
-        this.dataService.getProducts()
-            .then((data) => {
-                this.data = data;
-                this.categoryData = this.categoryService.filterProductsByCategory(this.data);
-            })
+        const dbRefObjectProducts = this.firebase.database().ref('api/v1').child('products').orderByChild('category').equalTo(this.$state.params.id);
+        this.productDataFire = this.$firebaseObject(dbRefObjectProducts);
     }
 
 }

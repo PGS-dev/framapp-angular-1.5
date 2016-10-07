@@ -8,13 +8,13 @@
         <h1 class="md-toolbar-tools">Category</h1>
     </md-toolbar>
     <md-content layout="column">
-        <md-button ng-repeat="tile in $ctrl.categoryObjectKeys"
-                   ui-sref="app.category({ id:tile })"
+        <md-button ng-repeat="(categoryKey, categorieData) in $ctrl.categoriesDataFire"
+                   ui-sref="app.category({ id:categoryKey })"
                    class="md-primary"
-                   ng-click="$ctrl.selectCategory(tile)"
-                   ng-class="$ctrl.getCategoryClass(tile)"
-                   aria-label="Category {{ tile }}">
-            <span>{{ tile }}</span>
+                   ng-click="$ctrl.selectCategory(categoryKey)"
+                   ng-class="$ctrl.getCategoryClass(categoryKey)"
+                   aria-label="Category {{ categorieData.title }}">
+            <span>{{ categorieData.title }}</span>
         </md-button>
     </md-content>
 

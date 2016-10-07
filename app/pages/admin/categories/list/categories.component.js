@@ -1,11 +1,11 @@
 class CategoriesAdminController {
-    constructor($mdMedia, $mdDialog, $location, firebase, dataService, toastService) {
+    constructor($mdMedia, $mdDialog, $location, firebase, $firebaseObject, toastService) {
         'ngInject';
         this.$mdMedia = $mdMedia;
         this.$mdDialog = $mdDialog;
         this.$location = $location;
         this.firebase = firebase;
-        this.dataService = dataService;
+        this.$firebaseObject = $firebaseObject;
         this.toastService = toastService;
     }
 
@@ -23,14 +23,13 @@ class CategoriesAdminController {
     }
 
     getCategories() {
-        this.dataService.getCategories()
-            .then(data => {
-                this.data = data;
-            })
+        const dbRefObjectCategories = this.firebase.database().ref('api/v1').child('categories');
+        this.categoriesDataFire = this.$firebaseObject(dbRefObjectCategories);
     }
 
     deleteCategory(categoryId, categoryTitle) {
         this.$mdDialog.show({
+            locals: {selectedTitle: categoryTitle},
             controller: this.dialogDeleteCategoryFunction,
             templateUrl: 'deleteCategoryDialog.tmpl.html',
             parent: angular.element(document.body),
@@ -45,7 +44,9 @@ class CategoriesAdminController {
             });
     }
 
-    dialogDeleteCategoryFunction($scope, $mdDialog) {
+    dialogDeleteCategoryFunction($scope, $mdDialog, selectedTitle) {
+        $scope.selectedTitle = selectedTitle;
+
         $scope.delete = function () {
             $mdDialog.hide();
         };
