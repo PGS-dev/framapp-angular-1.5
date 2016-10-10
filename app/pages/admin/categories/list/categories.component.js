@@ -1,5 +1,5 @@
 class CategoriesAdminController {
-    constructor($mdMedia, $mdDialog, $location, firebase, $firebaseObject, toastService) {
+    constructor($mdMedia, $mdDialog, $location, firebase, $firebaseObject, toastService, dataService) {
         'ngInject';
         this.$mdMedia = $mdMedia;
         this.$mdDialog = $mdDialog;
@@ -7,6 +7,7 @@ class CategoriesAdminController {
         this.firebase = firebase;
         this.$firebaseObject = $firebaseObject;
         this.toastService = toastService;
+        this.dataService = dataService;
     }
 
     $onInit() {
@@ -23,8 +24,10 @@ class CategoriesAdminController {
     }
 
     getCategories() {
-        const dbRefObjectCategories = this.firebase.database().ref('api/v1').child('categories');
-        this.categoriesDataFire = this.$firebaseObject(dbRefObjectCategories);
+        this.dataService.getCategories()
+            .then(data => {
+                this.categoriesDataFire = data;
+            });
     }
 
     deleteCategory(categoryId, categoryTitle) {

@@ -7,7 +7,7 @@
                     md-row-height-gt-md="1:1" md-row-height="2:2"
                     md-gutter="12px" md-gutter-gt-sm="8px">
                 <md-grid-tile ng-repeat="(productKey, productData) in $ctrl.promotedData"
-                              ui-sref="app.product({ id:productData.guid })">
+                              ui-sref="app.product({ id:productKey })">
                     <img ng-src="{{productData.imageUrl}}" layout-fill>
                     <md-icon ng-if="productData.promoted"
                              class="star-icon"

@@ -1,12 +1,12 @@
 class ProductsAdminController {
-    constructor($mdMedia, $mdDialog, $location, firebase, toastService, $firebaseObject) {
+    constructor($mdMedia, $mdDialog, $location, firebase, $firebaseObject, toastService) {
         'ngInject';
         this.$mdMedia = $mdMedia;
         this.$mdDialog = $mdDialog;
         this.$location = $location;
         this.firebase = firebase;
-        this.toastService = toastService;
         this.$firebaseObject = $firebaseObject;
+        this.toastService = toastService;
     }
 
     $onInit() {

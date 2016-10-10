@@ -1,0 +1,126 @@
+<div class="ProductCreate" layout="column" ng-cloak>
+    <md-content ng-class="{pullleft: $ctrl.$mdMedia('gt-sm')}"
+                class="pgs-mainContent" layout-padding>
+        <div layout="row" layout-align="center">
+            <md-content flex="33" layout-padding>
+                <form name="addProduct" ng-submit="$ctrl.submit(inputs)">
+
+                    <md-input-container class="md-block">
+                        <md-switch ng-model="inputs.promoted"
+                                   name="productPromoted">
+                            Product promoted: {{inputs.promoted ? "yes" : "no"}}
+                        </md-switch>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Product name</label>
+                        <input type="text"
+                               name="productTitle"
+                               ng-model="inputs.title"
+                               ng-maxlength="30" required>
+                        <div ng-messages="addProduct.productTitle.$error"
+                             ng-if="addProduct.productTitle.$invalid && !addProduct.productTitle.$pristine">
+                            <div ng-message="required">This field is required.</div>
+                            <div ng-message="maxlength">The given expression is too long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Product category</label>
+                        <md-select name="productCategory" ng-model="inputs.category" required>
+                            <md-option ng-repeat="(productCategoryKey, productCategoryData) in $ctrl.categoriesDataFire" value="{{productCategoryKey}}">{{productCategoryData.title}}</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Price (USD)</label>
+                        <input type="number"
+                               step="0.05"
+                               name="productPrice"
+                               ng-model="inputs.price"
+                               min="1"
+                               max="10000" required>
+                        <div ng-messages="addProduct.productPrice.$error">
+                            <div ng-message="required">
+                                This field is required.
+                            </div>
+                            <div ng-message="min">
+                                Minimum price must be more then 0.
+                            </div>
+                            <div ng-message="max">
+                                Maximum price must be less then 10 000.
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Image URL</label>
+                        <input type="url"
+                               name="productImageUrl"
+                               ng-minlength="5"
+                               ng-maxlength="255"
+                               ng-model="inputs.imageUrl" required>
+                        <div ng-messages="addProduct.productImageUrl.$error">
+                            <div ng-message="required">
+                                This field is required.
+                            </div>
+                            <div ng-message="minlength">
+                                The given expression is too short.
+                            </div>
+                            <div ng-message="url">
+                                The given expression is not link.
+                            </div>
+                            <div ng-message="maxlength">
+                                The given expression is too long.
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Amount</label>
+                        <input required type="number"
+                               step="any"
+                               name="productAmount"
+                               ng-model="inputs.amount"
+                               min="0"
+                               max="10000"/>
+                        <div ng-messages="addProduct.productPrice.$error">
+                            <div ng-message="required">
+                                This field is required.
+                            </div>
+                            <div ng-message="min">
+                                Minimum amount must be more then 0.
+                            </div>
+                            <div ng-message="max">
+                                Maximum amount must be less then 10 000.
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Description</label>
+                        <textarea name="categoryDescription"
+                                  ng-model="inputs.description"
+                                  md-maxlength="200"
+                                  rows="5"
+                                  required>
+                        </textarea>
+                        <div ng-messages="addProduct.categoryDescription.$error"
+                             ng-if="addProduct.categoryDescription.$invalid && !addProduct.categoryDescription.$pristine">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="maxlength">The given expression is too long</div>
+                        </div>
+                    </md-input-container>
+                    <md-button type="submit"
+                               class="md-primary md-raised"
+                               ng-disabled="addProduct.$invalid"
+                               ng-click="$ctrl.createNewProduct(inputs)"
+                               ui-sref="app.products">
+                        Add product
+                    </md-button>
+                </form>
+            </md-content>
+        </div>
+        <div flex></div>
+    </md-content>
+</div>

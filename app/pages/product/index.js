@@ -1,11 +1,9 @@
 import ProductViewComponent from './product.component';
 import './product.scss';
-import ProductService from './product.service';
 
 const productViewModule = angular
     .module('app.pages.productViewModule', [])
     .component('productViewComponent', ProductViewComponent)
-    .service('productService', ProductService)
     .config(($stateProvider) => {
         'ngInject';
 
