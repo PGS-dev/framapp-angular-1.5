@@ -1,32 +1,43 @@
 class ProductsAdminController {
-    constructor($mdMedia, $mdDialog, $location, firebase, dataService, toastService) {
+    constructor($mdMedia, $mdDialog, $state, $location, firebase, dataService, productsAdminService, toastService) {
         'ngInject';
 
         this.$mdMedia = $mdMedia;
         this.$mdDialog = $mdDialog;
+        this.$state = $state;
         this.$location = $location;
         this.firebase = firebase;
         this.dataService = dataService;
+        this.productsAdminService = productsAdminService;
         this.toastService = toastService;
     }
 
     $onInit() {
         this.redirectUser();
+        this.getCategories();
         this.getProducts();
+        this.getCategoryFromURL = this.$location.search().category;
     }
 
     redirectUser() {
         this.firebase.auth().onAuthStateChanged(user => {
             if (!user) {
-                this.$location.path('/');
+                this.$state.go('app.main');
             }
         });
+    }
+
+    getCategories() {
+        this.dataService.getCategories()
+            .then(data => {
+                this.categoriesData = data;
+            });
     }
 
     getProducts() {
         this.dataService.getProducts()
             .then(data => {
-                this.productData = data;
+                this.productData = this.productsAdminService.setKeyConvertToArray(data);
             });
     }
 
@@ -41,6 +52,7 @@ class ProductsAdminController {
             .then(n => {
                 this.firebase.database().ref('api/v1/products').child(productId).remove();
                 this.toastService.showSuccessToast(`Product '${productTitle}' has been removed`);
+                this.getProducts();
             })
             .catch(e => {
                 console.log('Discard dialog box');

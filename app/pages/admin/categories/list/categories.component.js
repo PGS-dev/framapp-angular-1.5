@@ -1,10 +1,10 @@
 class CategoriesAdminController {
-    constructor($mdMedia, $mdDialog, $location, firebase, toastService, dataService) {
+    constructor($mdMedia, $mdDialog, $state, firebase, toastService, dataService) {
         'ngInject';
 
         this.$mdMedia = $mdMedia;
         this.$mdDialog = $mdDialog;
-        this.$location = $location;
+        this.$state = $state;
         this.firebase = firebase;
         this.toastService = toastService;
         this.dataService = dataService;
@@ -18,7 +18,7 @@ class CategoriesAdminController {
     redirectUser() {
         this.firebase.auth().onAuthStateChanged(user => {
             if (!user) {
-                this.$location.path('/');
+                this.$state.go('app.main');
             }
         });
     }

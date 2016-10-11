@@ -1,9 +1,9 @@
 class CategoryCreateController {
-    constructor($mdMedia, $location, firebase, categoryCreateService) {
+    constructor($mdMedia, $state, firebase, categoryCreateService) {
         'ngInject';
 
         this.$mdMedia = $mdMedia;
-        this.$location = $location;
+        this.$state = $state;
         this.firebase = firebase;
         this.categoryCreateService = categoryCreateService;
     }
@@ -15,7 +15,7 @@ class CategoryCreateController {
     redirectUser() {
         this.firebase.auth().onAuthStateChanged(user => {
             if (!user) {
-                this.$location.path('/');
+                this.$state.go('app.main');
             }
         });
     }

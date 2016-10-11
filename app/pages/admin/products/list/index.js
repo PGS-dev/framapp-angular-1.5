@@ -1,9 +1,11 @@
 import ProductsAdminComponent from './products.component';
 import './products.scss';
+import ProductsAdminService from './products.service';
 
 const productsAdminModule = angular
     .module('app.pages.productsAdminModule', [])
     .component('productsAdminComponent', ProductsAdminComponent)
+    .service('productsAdminService', ProductsAdminService)
     .config(($stateProvider) => {
         'ngInject';
 

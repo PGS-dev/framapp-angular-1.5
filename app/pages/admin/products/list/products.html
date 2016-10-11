@@ -3,8 +3,26 @@
                 class="pgs-mainContent" layout-padding>
         <div layout="column" layout-align="top left">
             <div layout="row">
-                <div flex>
-                    <md-subheader class="md-no-sticky">Products list</md-subheader>
+                <div flex="33">
+                    <md-input-container class="md-block">
+                        <label>Search products</label>
+                        <input ng-model="searchProducts.title">
+                    </md-input-container>
+                </div>
+                <div flex="33">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Category</label>
+                        <md-select ng-model="searchProducts.category">
+                            <md-option value="">
+                                All
+                            </md-option>
+                            <md-option ng-repeat="categories in $ctrl.categoriesData"
+                                       value="{{categories.id}}"
+                                       ng-selected="{{categories.id == $ctrl.getCategoryFromURL}}">
+                                {{categories.title}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
                 </div>
                 <div flex>
                     <md-button ui-sref="app.product-create" class="md-raised md-primary pgs-float-r">
@@ -12,14 +30,14 @@
                     </md-button>
                 </div>
             </div>
-            <md-list-item ng-repeat="(key, data) in $ctrl.productData">
-                <p>{{data.title}} <span class="desc">{{data.category}}</span></p>
+            <md-list-item ng-repeat="productDetails in $ctrl.productData | filter: searchProducts">
+                <p>{{productDetails.title}} <span class="desc">{{productDetails.category}}</span></p>
                 <md-icon class="md-secondary"
                          ng-click="null"
                          aria-label="Settings"
                          md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
                 <md-icon class="md-secondary"
-                         ng-click="$ctrl.deleteProduct(key, data.title)"
+                         ng-click="$ctrl.deleteProduct(productDetails.productKey, productDetails.title)"
                          aria-label="Delete"
                          md-svg-icon="../icons/ic_delete_black_24px.svg"></md-icon>
                 <md-divider ng-if="!$last"></md-divider>

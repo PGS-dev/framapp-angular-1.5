@@ -1,9 +1,9 @@
 class ProductCreateController {
-    constructor($mdMedia, $location, firebase, productCreateService, dataService) {
+    constructor($mdMedia, $state, firebase, productCreateService, dataService) {
         'ngInject';
 
         this.$mdMedia = $mdMedia;
-        this.$location = $location;
+        this.$state = $state;
         this.firebase = firebase;
         this.productCreateService = productCreateService;
         this.dataService = dataService;
@@ -17,7 +17,7 @@ class ProductCreateController {
     redirectUser() {
         this.firebase.auth().onAuthStateChanged(user => {
             if (!user) {
-                this.$location.path('/');
+                this.$state.go('app.main');
             }
         });
     }
