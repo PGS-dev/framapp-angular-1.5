@@ -7,7 +7,6 @@ import localStorage from 'angular-local-storage';
 import firebase from 'firebase';
 import ngFirebase from 'angularfire';
 import ngLoading from 'angular-loading-bar';
-import ngPagination from 'angular-utils-pagination';
 import componentsModule from './components';
 import pagesModule from './pages';
 import './style/sass/common.scss';
@@ -23,7 +22,6 @@ const root = angular
         localStorage,
         ngFirebase,
         ngLoading,
-        ngPagination,
 
         // App modules
         componentsModule,
