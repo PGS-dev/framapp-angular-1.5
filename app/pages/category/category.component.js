@@ -1,21 +1,22 @@
 class CategoryController {
-    constructor($mdMedia, firebase, $firebaseObject, $state) {
+    constructor($mdMedia, $state, dataService) {
         'ngInject';
+
         this.$mdMedia = $mdMedia;
-        this.firebase = firebase;
-        this.$firebaseObject = $firebaseObject;
         this.$state = $state;
+        this.dataService = dataService;
     }
 
     $onInit() {
-        this.getProducts();
+        this.getProductsByCategory();
     }
 
-    getProducts() {
-        const dbRefObjectProducts = this.firebase.database().ref('api/v1').child('products').orderByChild('category').equalTo(this.$state.params.id);
-        this.productDataFire = this.$firebaseObject(dbRefObjectProducts);
+    getProductsByCategory() {
+        this.dataService.getProductsByCategory(this.$state.params.id)
+            .then(data => {
+                this.productData = data;
+            });
     }
-
 }
 
 const CategoryViewComponent = {

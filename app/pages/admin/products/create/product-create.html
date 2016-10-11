@@ -27,8 +27,11 @@
 
                     <md-input-container class="md-block">
                         <label>Product category</label>
-                        <md-select name="productCategory" ng-model="inputs.category" required>
-                            <md-option ng-repeat="(productCategoryKey, productCategoryData) in $ctrl.categoriesDataFire" value="{{productCategoryKey}}">{{productCategoryData.title}}</md-option>
+                        <md-select name="productCategory"
+                                   ng-model="inputs.category" required>
+                            <md-option ng-repeat="(productCategoryKey, productCategoryData) in $ctrl.categoriesData" value="{{productCategoryKey}}">
+                                {{productCategoryData.title}}
+                            </md-option>
                         </md-select>
                     </md-input-container>
 

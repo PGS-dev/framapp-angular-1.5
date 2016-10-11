@@ -1,20 +1,22 @@
 class ProductController {
-    constructor($mdMedia, $state, firebase, $firebaseObject) {
+    constructor($mdMedia, $state, dataService) {
         'ngInject';
+
         this.$mdMedia = $mdMedia;
         this.$state = $state;
-        this.firebase = firebase;
-        this.$firebaseObject = $firebaseObject;
+        this.dataService = dataService;
+
     }
 
     $onInit() {
-        this.productKey = this.$state.params.id;
-        this.getProduct(this.productKey);
+        this.getProduct();
     }
 
-    getProduct(productKey) {
-        const dbRefObjectProducts = this.firebase.database().ref('api/v1/products').child(productKey);
-        this.productData = this.$firebaseObject(dbRefObjectProducts);
+    getProduct() {
+        this.dataService.getProduct(this.$state.params.id)
+            .then(data => {
+                this.productData = data;
+            });
     }
 }
 

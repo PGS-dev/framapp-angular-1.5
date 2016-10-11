@@ -1,11 +1,11 @@
 class CategoriesAdminController {
-    constructor($mdMedia, $mdDialog, $location, firebase, $firebaseObject, toastService, dataService) {
+    constructor($mdMedia, $mdDialog, $location, firebase, toastService, dataService) {
         'ngInject';
+
         this.$mdMedia = $mdMedia;
         this.$mdDialog = $mdDialog;
         this.$location = $location;
         this.firebase = firebase;
-        this.$firebaseObject = $firebaseObject;
         this.toastService = toastService;
         this.dataService = dataService;
     }
@@ -26,7 +26,7 @@ class CategoriesAdminController {
     getCategories() {
         this.dataService.getCategories()
             .then(data => {
-                this.categoriesDataFire = data;
+                this.categoriesData = data;
             });
     }
 

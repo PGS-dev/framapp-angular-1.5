@@ -1,6 +1,7 @@
 class LoginController {
     constructor($mdDialog, $scope, firebaseConfig, firebase, toastService) {
         'ngInject';
+
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
         this.firebaseConfig = firebaseConfig;

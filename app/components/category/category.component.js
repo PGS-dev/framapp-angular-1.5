@@ -1,9 +1,10 @@
 class CategoryController {
-    constructor($state, firebase, $firebaseObject) {
+    constructor($state, firebase, dataService) {
         'ngInject';
+
         this.$state = $state;
         this.firebase = firebase;
-        this.$firebaseObject = $firebaseObject;
+        this.dataService = dataService;
     }
 
     $onInit() {
@@ -22,8 +23,10 @@ class CategoryController {
     }
 
     getCategories() {
-        const dbRefObjectCategories = this.firebase.database().ref('api/v1').child('categories');
-        this.categoriesDataFire = this.$firebaseObject(dbRefObjectCategories);
+        this.dataService.getCategories()
+            .then(data => {
+                this.categoriesData = data;
+            });
     }
 
     isUserLogged() {

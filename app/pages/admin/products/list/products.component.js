@@ -1,11 +1,12 @@
 class ProductsAdminController {
-    constructor($mdMedia, $mdDialog, $location, firebase, $firebaseObject, toastService) {
+    constructor($mdMedia, $mdDialog, $location, firebase, dataService, toastService) {
         'ngInject';
+
         this.$mdMedia = $mdMedia;
         this.$mdDialog = $mdDialog;
         this.$location = $location;
         this.firebase = firebase;
-        this.$firebaseObject = $firebaseObject;
+        this.dataService = dataService;
         this.toastService = toastService;
     }
 
@@ -23,8 +24,10 @@ class ProductsAdminController {
     }
 
     getProducts() {
-        const dbRefObjectProducts = this.firebase.database().ref('api/v1').child('products');
-        this.productDataFire = this.$firebaseObject(dbRefObjectProducts);
+        this.dataService.getProducts()
+            .then(data => {
+                this.productData = data;
+            });
     }
 
     deleteProduct(productId, productTitle) {

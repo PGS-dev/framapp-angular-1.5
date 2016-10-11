@@ -1,6 +1,7 @@
 class CategoryCreateController {
     constructor($mdMedia, $location, firebase, categoryCreateService) {
         'ngInject';
+
         this.$mdMedia = $mdMedia;
         this.$location = $location;
         this.firebase = firebase;

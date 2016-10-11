@@ -1,8 +1,7 @@
 class CategoryCreateService {
-    constructor($http, firebase, toastService) {
+    constructor(firebase, toastService) {
         'ngInject';
 
-        this.$http = $http;
         this.firebase = firebase;
         this.toastService = toastService;
     }

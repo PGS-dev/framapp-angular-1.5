@@ -8,7 +8,7 @@
         <h1 class="md-toolbar-tools">Category</h1>
     </md-toolbar>
     <md-content layout="column">
-        <md-button ng-repeat="(categoryKey, categorieData) in $ctrl.categoriesDataFire"
+        <md-button ng-repeat="(categoryKey, categorieData) in $ctrl.categoriesData"
                    ui-sref="app.category({ id:categoryKey })"
                    class="md-primary"
                    ng-click="$ctrl.selectCategory(categoryKey)"
