@@ -17,10 +17,6 @@ The implementation of these same functional requirements based on different tech
 2. Run `$ npm install` to install dependencies.<br />
    *At this point you can run `$ npm run dev` to see the example app at `http://localhost`.*
 
-## License
-
-This project is licensed under the MIT license, Copyright (c) 2016 PGS Soft S.A. For more information see `LICENSE.md`.
-
 ## Features
 
 <dl>
