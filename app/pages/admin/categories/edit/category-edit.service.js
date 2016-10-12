@@ -8,11 +8,11 @@ class CategoryEditService {
 
     updateCategory(inputs) {
         if(inputs != null) {
-            const updateData = {
+            const updateCategoryData = {
                 'title': inputs.title
             };
 
-            return this.firebase.database().ref(`api/v1/categories/${inputs.id}`).update(updateData)
+            return this.firebase.database().ref(`api/v1/categories/${inputs.id}`).update(updateCategoryData)
                 .then(this.responseSuccess(inputs.title))
                 .catch(this.responseWarning);
         }

@@ -34,6 +34,7 @@
                 <p>{{productDetails.title}} <span class="desc">{{productDetails.category}}</span></p>
                 <md-icon class="md-secondary"
                          ng-click="null"
+                         ui-sref="app.product-edit({ id:productDetails.productKey })"
                          aria-label="Settings"
                          md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
                 <md-icon class="md-secondary"

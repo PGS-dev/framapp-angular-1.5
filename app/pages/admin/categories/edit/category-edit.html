@@ -4,9 +4,7 @@
         <div layout="row" layout-align="center">
             <md-content flex="33" layout-padding>
                 <form name="updateCategory" ng-submit="$ctrl.submit($ctrl.categoryData.title)">
-
                     <md-input-container class="md-block">
-                        <input type="hidden" ng-value="$ctrl.categoriesData.title">
                         <label>Category name</label>
                         <input type="text"
                                name="categoryTitle"
@@ -19,7 +17,6 @@
                             <div ng-message="maxlength">The given expression is too long</div>
                         </div>
                     </md-input-container>
-
                     <md-button type="submit"
                                class="md-default md-raised"
                                ui-sref="app.categories">

@@ -1,14 +1,14 @@
-<div class="ProductCreate" layout="column" ng-cloak>
+<div class="ProductEdit" layout="column" ng-cloak>
     <md-content ng-class="{pullleft: $ctrl.$mdMedia('gt-sm')}"
                 class="pgs-mainContent" layout-padding>
         <div layout="row" layout-align="center">
             <md-content flex="33" layout-padding>
-                <form name="addProduct" ng-submit="$ctrl.submit(inputs)">
+                <form name="updateProduct" ng-submit="$ctrl.submit($ctrl.productData)">
 
                     <md-input-container class="md-block">
-                        <md-switch ng-model="inputs.promoted"
+                        <md-switch ng-model="$ctrl.productData.promoted"
                                    name="productPromoted">
-                            Product promoted: {{inputs.promoted ? "yes" : "no"}}
+                            Product promoted: {{$ctrl.productData.promoted ? "yes" : "no"}}
                         </md-switch>
                     </md-input-container>
 
@@ -16,10 +16,11 @@
                         <label>Product name</label>
                         <input type="text"
                                name="productTitle"
-                               ng-model="inputs.title"
-                               ng-maxlength="30" required>
-                        <div ng-messages="addProduct.productTitle.$error"
-                             ng-if="addProduct.productTitle.$invalid && !addProduct.productTitle.$pristine">
+                               ng-model="$ctrl.productData.title"
+                               ng-maxlength="30"
+                               ng-value="$ctrl.productData.title" required>
+                        <div ng-messages="updateProduct.productTitle.$error"
+                             ng-if="updateProduct.productTitle.$invalid && !updateProduct.productTitle.$pristine">
                             <div ng-message="required">This field is required.</div>
                             <div ng-message="maxlength">The given expression is too long.</div>
                         </div>
@@ -28,8 +29,10 @@
                     <md-input-container class="md-block">
                         <label>Product category</label>
                         <md-select name="productCategory"
-                                   ng-model="inputs.category" required>
-                            <md-option ng-repeat="(productCategoryKey, productCategoryData) in $ctrl.categoriesData" value="{{productCategoryKey}}">
+                                   ng-model="$ctrl.productData.category">
+                            <md-option ng-repeat="(productCategoryKey, productCategoryData) in $ctrl.categoriesData"
+                                       ng-value="productCategoryKey"
+                                       ng-selected="{{ productCategoryKey === $ctrl.productData.category ? 'true' : 'false' }}">
                                 {{productCategoryData.title}}
                             </md-option>
                         </md-select>
@@ -40,10 +43,11 @@
                         <input type="number"
                                step="any"
                                name="productPrice"
-                               ng-model="inputs.price"
+                               ng-model="$ctrl.productData.price"
                                min="1"
-                               max="10000" required>
-                        <div ng-messages="addProduct.productPrice.$error">
+                               max="10000"
+                               ng-value="$ctrl.productData.price" required>
+                        <div ng-messages="updateProduct.productPrice.$error">
                             <div ng-message="required">
                                 This field is required.
                             </div>
@@ -60,10 +64,11 @@
                         <label>Image URL</label>
                         <input type="url"
                                name="productImageUrl"
-                               ng-model="inputs.imageUrl"
+                               ng-model="$ctrl.productData.imageUrl"
                                ng-minlength="5"
-                               ng-maxlength="255" required>
-                        <div ng-messages="addProduct.productImageUrl.$error">
+                               ng-maxlength="255"
+                               ng-value="$ctrl.productData.imageUrl" required>
+                        <div ng-messages="updateProduct.productImageUrl.$error">
                             <div ng-message="required">
                                 This field is required.
                             </div>
@@ -84,10 +89,11 @@
                         <input type="number"
                                step="any"
                                name="productAmount"
-                               ng-model="inputs.amount"
+                               ng-model="$ctrl.productData.amount"
                                min="0"
-                               max="10000" required>
-                        <div ng-messages="addProduct.productPrice.$error">
+                               max="10000"
+                               ng-value="$ctrl.productData.amount" required>
+                        <div ng-messages="updateProduct.productPrice.$error">
                             <div ng-message="required">
                                 This field is required.
                             </div>
@@ -103,22 +109,28 @@
                     <md-input-container class="md-block">
                         <label>Description</label>
                         <textarea name="productDescription"
-                                  ng-model="inputs.description"
+                                  ng-model="$ctrl.productData.description"
                                   md-maxlength="1000"
-                                  rows="5" required>
+                                  rows="5"
+                                  ng-value="$ctrl.productData.description" required>
                         </textarea>
-                        <div ng-messages="addProduct.productDescription.$error"
-                             ng-if="addProduct.productDescription.$invalid && !addProduct.productDescription.$pristine">
+                        <div ng-messages="updateProduct.productDescription.$error"
+                             ng-if="updateProduct.productDescription.$invalid && !updateProduct.productDescription.$pristine">
                             <div ng-message="required">This field is required</div>
                             <div ng-message="maxlength">The given expression is too long</div>
                         </div>
                     </md-input-container>
                     <md-button type="submit"
-                               class="md-primary md-raised"
-                               ng-disabled="addProduct.$invalid"
-                               ng-click="$ctrl.createNewProduct(inputs)"
+                               class="md-default md-raised"
                                ui-sref="app.products">
-                        Add product
+                        Cancel
+                    </md-button>
+                    <md-button type="submit"
+                               class="md-primary md-raised"
+                               ng-disabled="!updateProduct.$valid"
+                               ng-click="$ctrl.updateProduct($ctrl.productData)"
+                               ui-sref="app.products">
+                        Update product
                     </md-button>
                 </form>
             </md-content>
