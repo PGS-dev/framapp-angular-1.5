@@ -16,9 +16,9 @@
                             <md-option value="">
                                 All
                             </md-option>
-                            <md-option ng-repeat="categories in $ctrl.categoriesData"
-                                       value="{{categories.id}}"
-                                       ng-selected="{{categories.id == $ctrl.getCategoryFromURL}}">
+                            <md-option ng-repeat="(key, categories) in $ctrl.categoriesData"
+                                       value="{{key}}"
+                                       ng-selected="{{key == $ctrl.getCategoryFromURL}}">
                                 {{categories.title}}
                             </md-option>
                         </md-select>

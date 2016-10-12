@@ -16,6 +16,15 @@ class DataService {
         });
     }
 
+    getCategory(categoryKey) {
+        const dbRefObjectCategory = this.firebase.database().ref('api/v1/categories').child(categoryKey);
+        const categoryData = this.$firebaseObject(dbRefObjectCategory);
+
+        return categoryData.$loaded().then(responseCategory => {
+            return responseCategory;
+        });
+    }
+
     getProductsByCategory(category) {
         const dbRefObjectProducts = this.firebase.database().ref('api/v1').child('products').orderByChild('category').equalTo(category);
         const productData = this.$firebaseObject(dbRefObjectProducts);

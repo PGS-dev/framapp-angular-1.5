@@ -7,8 +7,8 @@
                     <md-subheader class="md-no-sticky">Category list</md-subheader>
                 </div>
                 <div flex>
-                    <md-button ui-sref="app.category-create" class="md-raised md-primary pgs-float-r">Create new
-                        category
+                    <md-button ui-sref="app.category-create" class="md-raised md-primary pgs-float-r">
+                        Create new category
                     </md-button>
                 </div>
             </div>
@@ -16,6 +16,7 @@
                 <p>{{categoryData.title}}</p>
                 <md-icon class="md-secondary"
                          ng-click="null"
+                         ui-sref="app.category-edit({ id:categoryKey })"
                          aria-label="Settings"
                          md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
                 <md-icon class="md-secondary"
