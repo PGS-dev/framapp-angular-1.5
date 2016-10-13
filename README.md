@@ -20,6 +20,9 @@ The implementation of these same functional requirements based on different tech
 ## Features
 
 <dl>
+	<dt>User profile</dt>
+	<dd>The ability to change your display name and avatar</dd>	
+
 	<dt>Products for admin</dt>
 	<dd>As an admin we can create, edit and delete products.</dd>
 

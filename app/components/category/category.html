@@ -11,8 +11,8 @@
         <md-button ng-repeat="(categoryKey, categorieData) in $ctrl.categoriesData"
                    ui-sref="app.category({ id:categoryKey })"
                    class="md-primary"
-                   ng-click="$ctrl.selectCategory(categoryKey)"
-                   ng-class="$ctrl.getCategoryClass(categoryKey)"
+                   ng-click="$ctrl.selectCategory('app.category/'+categoryKey)"
+                   ng-class="$ctrl.getCategoryClass('app.category/'+categoryKey)"
                    aria-label="Category {{ categorieData.title }}">
             <span>{{ categorieData.title }}</span>
         </md-button>
@@ -26,16 +26,16 @@
 
             <md-button class="md-primary"
                        ui-sref="app.products"
-                       ng-click="$ctrl.selectCategory('products')"
-                       ng-class="$ctrl.getCategoryClass('products')"
+                       ng-click="$ctrl.selectCategory('app.products')"
+                       ng-class="$ctrl.getCategoryClass('app.products')"
                        aria-label="Products">
                 <span>Products</span>
             </md-button>
 
             <md-button class="md-primary"
                        ui-sref="app.categories"
-                       ng-click="$ctrl.selectCategory('categories')"
-                       ng-class="$ctrl.getCategoryClass('categories')"
+                       ng-click="$ctrl.selectCategory('app.categories')"
+                       ng-class="$ctrl.getCategoryClass('app.categories')"
                        aria-label="Categories">
                 <span>Categories</span>
             </md-button>

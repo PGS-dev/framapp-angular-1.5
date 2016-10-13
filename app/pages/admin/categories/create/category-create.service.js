@@ -21,7 +21,7 @@ class CategoryCreateService {
     }
 
     responseWarning() {
-        this.toastService.showSuccessToast(`Something went wrong.`);
+        this.toastService.showWarningToast(`Something went wrong.`);
     }
 }
 

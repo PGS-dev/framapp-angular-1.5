@@ -1,0 +1,52 @@
+<div class="Profile" layout="column" ng-cloak>
+    <md-content ng-class="{pullleft: $ctrl.$mdMedia('gt-sm')}"
+                class="pgs-mainContent" layout-padding>
+        <div layout="row" layout-align="center">
+            <md-content flex="33" layout-padding>
+                <form name="updateProfile" ng-submit="$ctrl.submit($ctrl.userDataForEdit)">
+                    <md-input-container class="md-block">
+                        <label>Display name</label>
+                        <input type="text"
+                               name="userDisplayName"
+                               ng-model="$ctrl.userDataForEdit.displayName"
+                               ng-maxlength="30"
+                               ng-value="$ctrl.userDataForEdit.displayName" required>
+                        <div ng-messages="updateProfile.userDisplayName.$error"
+                             ng-if="updateProfile.userDisplayName.$invalid && !updateProfile.userDisplayName.$pristine">
+                            <div ng-message="required">This field is required</div>
+                            <div ng-message="maxlength">The given expression is too long</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Photo URL</label>
+                        <input type="url"
+                               name="userPhotoURL"
+                               ng-model="$ctrl.userDataForEdit.photoURL"
+                               ng-minlength="5"
+                               ng-maxlength="255"
+                               ng-value="$ctrl.userDataForEdit.photoURL" required>
+                        <div ng-messages="updateProfile.userPhotoURL.$invalid && !updateProfile.userPhotoURL.$pristine">
+                            <div ng-message="required">This field is required.</div>
+                            <div ng-message="minlength">The given expression is too short.</div>
+                            <div ng-message="url">The given expression is not link.</div>
+                            <div ng-message="maxlength">The given expression is too long.</div>
+                        </div>
+                    </md-input-container>
+                    <md-button type="submit"
+                               class="md-default md-raised"
+                               ui-sref="app.main">
+                        Cancel
+                    </md-button>
+                    <md-button type="submit"
+                               class="md-primary md-raised"
+                               ng-disabled="!updateProfile.$valid"
+                               ng-click="$ctrl.getUserProfileData($ctrl.userDataForEdit)"
+                               ui-sref="app.main">
+                        Update profile
+                    </md-button>
+                </form>
+            </md-content>
+        </div>
+        <div flex></div>
+    </md-content>
+</div>

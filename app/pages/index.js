@@ -7,6 +7,7 @@ import categoryEditModule from './admin/categories/edit';
 import productsAdminModule from './admin/products/list';
 import productCreateModule from './admin/products/create';
 import productEditModule from './admin/products/edit';
+import profileModule from './profile';
 
 const pagesModule = angular
     .module('app.pages', [
@@ -18,7 +19,8 @@ const pagesModule = angular
         categoryEditModule,
         productsAdminModule,
         productCreateModule,
-        productEditModule
+        productEditModule,
+        profileModule
     ])
     .name;
 

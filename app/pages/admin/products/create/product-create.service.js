@@ -34,7 +34,7 @@ class ProductCreateService {
     }
 
     responseWarning() {
-        this.toastService.showSuccessToast(`Something went wrong.`);
+        this.toastService.showWarningToast(`Something went wrong.`);
     }
 }
 
