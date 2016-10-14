@@ -37,6 +37,10 @@ md-backdrop {
   position: fixed;
 }
 
+md-content.pgs-mainContent {
+  overflow: visible;
+}
+
 .pgs-mainContent {
   margin-top: 64px;
 
