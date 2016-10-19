@@ -1,9 +1,8 @@
 class DataService {
-    constructor(firebase, toastService, $firebaseObject) {
+    constructor(firebase, $firebaseObject) {
         'ngInject';
 
         this.firebase = firebase;
-        this.toastService = toastService;
         this.$firebaseObject = $firebaseObject;
     }
 
@@ -60,7 +59,6 @@ class DataService {
             return responseProduct;
         });
     }
-
 }
 
 export default DataService;

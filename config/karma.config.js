@@ -7,9 +7,9 @@ module.exports = function (karma) {
         frameworks: ['jasmine'],
         files: [
             '../node_modules/angular/angular.js',
+            '../node_modules/angularfire/dist/angularfire.js',
             '../node_modules/angular-ui-router/release/angular-ui-router.js',
             '../node_modules/angular-mocks/angular-mocks.js',
-            '../node_modules/angular-local-storage/dist/angular-local-storage.js',
             '../app/components/*/index.js',
             '../app/pages/*/*/*/index.js',
             '../app/pages/*/index.js',
