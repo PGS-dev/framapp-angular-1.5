@@ -7,7 +7,7 @@ class ProfileService {
     }
 
     updateProfile(inputs, user) {
-        if (inputs.displayName != null && inputs.photoURL) {
+        if (inputs.displayName && inputs.photoURL) {
             return user.updateProfile({
                 displayName: inputs.displayName,
                 photoURL: inputs.photoURL

@@ -8,17 +8,17 @@ class ProductCreateService {
 
     createNewProduct(inputs) {
         if (inputs.title && inputs.category && inputs.price && inputs.imageUrl && inputs.amount && inputs.description) {
-            inputs.promoted == null ? inputs.promoted = false : '';
+            !inputs.promoted ? inputs.promoted = false : '';
 
             const createProductData = {
-                'title': inputs.title,
-                'promoted': inputs.promoted,
-                'category': inputs.category,
-                'price': inputs.price,
-                'imageUrl': inputs.imageUrl,
-                'amount': inputs.amount,
-                'description': inputs.description,
-                'created': new Date().toLocaleString('pl-PL')
+                title: inputs.title,
+                promoted: inputs.promoted,
+                category: inputs.category,
+                price: inputs.price,
+                imageUrl: inputs.imageUrl,
+                amount: inputs.amount,
+                description: inputs.description,
+                created: new Date().toLocaleString('pl-PL')
             };
 
             const newProductKey = this.firebase.database().ref('api/v1').child('products').push().key;

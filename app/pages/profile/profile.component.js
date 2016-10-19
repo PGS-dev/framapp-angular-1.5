@@ -26,12 +26,12 @@ class ProfileController {
             if (userData) {
                 const user = this.firebase.auth().currentUser;
 
-                if (inputs == null) {
+                if (!inputs) {
                     this.userDataForEdit = {};
                     this.userDataForEdit = {
-                        'displayName': user.displayName,
-                        'email': user.email,
-                        'photoURL': user.photoURL
+                        displayName: user.displayName,
+                        email: user.email,
+                        photoURL: user.photoURL
                     };
                 } else {
                     this.profileService.updateProfile(inputs, user);
