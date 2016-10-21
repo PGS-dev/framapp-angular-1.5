@@ -16,6 +16,7 @@ The implementation of these same functional requirements based on different tech
 1. Clone this repo using `$ git clone https://github.com/PGS-dev/framapp-angular-1.5.git`.
 2. Run `$ npm install` to install dependencies.<br />
    *At this point you can run `$ npm run dev` to see the example app at `http://localhost`.*
+3. Run `$ npm rum karma` to open karma tests.
 
 ## Features
 

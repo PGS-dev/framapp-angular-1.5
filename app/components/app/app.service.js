@@ -25,7 +25,13 @@ class DataService {
     }
 
     getProductsByCategory(category) {
-        const dbRefObjectProducts = this.firebase.database().ref('api/v1').child('products').orderByChild('category').equalTo(category);
+        const dbRefObjectProducts =
+            this.firebase.database()
+                .ref('api/v1')
+                .child('products')
+                .orderByChild('category')
+                .equalTo(category);
+
         const productData = this.$firebaseObject(dbRefObjectProducts);
 
         return productData.$loaded().then(responseProducts => {
@@ -43,7 +49,13 @@ class DataService {
     }
 
     getPromotedProducts() {
-        const dbRefObjectProducts = this.firebase.database().ref('api/v1').child('products').orderByChild('promoted').equalTo(true);
+        const dbRefObjectProducts =
+            this.firebase.database()
+                .ref('api/v1')
+                .child('products')
+                .orderByChild('promoted')
+                .equalTo(true);
+
         const productsData = this.$firebaseObject(dbRefObjectProducts);
 
         return productsData.$loaded().then(responseProducts => {

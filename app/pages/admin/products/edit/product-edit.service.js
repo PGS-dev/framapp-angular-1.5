@@ -9,14 +9,14 @@ class ProductEditService {
     updateProduct(inputs, productId) {
         if(inputs.title && inputs.category && inputs.price && inputs.imageUrl && inputs.amount && inputs.description) {
             const updateProductData = {
-                'title': inputs.title,
-                'promoted': inputs.promoted,
-                'category': inputs.category,
-                'price': inputs.price,
-                'imageUrl': inputs.imageUrl,
-                'amount': inputs.amount,
-                'description': inputs.description,
-                'edit': new Date().toLocaleString('pl-PL')
+                title: inputs.title,
+                promoted: inputs.promoted,
+                category: inputs.category,
+                price: inputs.price,
+                imageUrl: inputs.imageUrl,
+                amount: inputs.amount,
+                description: inputs.description,
+                edit: new Date().toLocaleString('pl-PL')
             };
 
             return this.firebase.database().ref(`api/v1/products/${productId}`).update(updateProductData)

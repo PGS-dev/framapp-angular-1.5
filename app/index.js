@@ -44,8 +44,7 @@ const root = angular
             .state('app', {
                 abstract: true,
                 views: {
-                    'navbar@': 'navbarComponent',
-                    'footer@': 'footerComponent'
+                    'navbar@': 'navbarComponent'
                 }
             });
 
