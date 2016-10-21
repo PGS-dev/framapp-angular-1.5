@@ -1,29 +1,32 @@
 class CategoryController {
-    constructor(dataService, $state) {
+    constructor(firebase, dataService) {
         'ngInject';
+
+        this.firebase = firebase;
         this.dataService = dataService;
-        this.$state = $state;
     }
 
     $onInit() {
         this.getCategories();
-        this.data = {};
-        this.selectedCategory = this.$state.params.id;
-    }
-
-    selectCategory(newCategory) {
-        this.selectedCategory = newCategory;
-    }
-
-    getCategoryClass(category) {
-        return this.selectedCategory == category ? "md-raised" : "";
+        this.userData = {};
+        this.isUserLogged();
     }
 
     getCategories() {
         this.dataService.getCategories()
-            .then((data) => {
-                this.data = data;
-            })
+            .then(data => {
+                this.categoriesData = data;
+            });
+    }
+
+    isUserLogged() {
+        this.firebase.auth().onAuthStateChanged(userData => {
+            if (userData) {
+                return this.userData = userData;
+            } else {
+                return this.userData = {};
+            }
+        });
     }
 }
 

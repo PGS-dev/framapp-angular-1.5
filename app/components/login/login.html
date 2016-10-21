@@ -1,0 +1,91 @@
+<div class="LoginComponent">
+    <div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
+        <md-button ng-if="!$ctrl.userData.uid"
+                   ng-click="$ctrl.showAdvanced($event)"
+                   class="md-primary md-raised">
+            Sign In
+        </md-button>
+        <md-menu md-offset="0 -7"
+                 ng-if="$ctrl.userData.uid">
+            <md-list-item ng-click="$mdOpenMenu($event)">
+                <img ng-if="!$ctrl.userData.photoURL"
+                     ng-src="../image/avatar.jpg"
+                     alt="avatar"
+                     class="md-avatar">
+                <img ng-if="$ctrl.userData.photoURL"
+                     ng-src="{{$ctrl.userData.photoURL}}"
+                     alt="avatar"
+                     class="md-avatar">
+                <span>{{$ctrl.userData.displayName}}</span>
+            </md-list-item>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ui-sref="app.profile">
+                        <md-icon md-svg-icon="../icons/ic_person_black_24px.svg"></md-icon>
+                        Profile
+                    </md-button>
+                </md-menu-item>
+                <md-menu-divider></md-menu-divider>
+                <md-menu-item>
+                    <md-button ng-click="$ctrl.logOut()"
+                               ui-sref="app.main">
+                        <md-icon md-svg-icon="../icons/ic_directions_run_black_24px.svg"></md-icon>
+                    Logout
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
+
+    <script type="text/ng-template" id="loginDialog.tmpl.html">
+        <md-dialog aria-label="Login">
+            <form name="loginForm" ng-submit="submit(inputs)" ng-cloak>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Login</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon md-svg-src="../icons/ic_clear_white_24px.svg" aria-label="Close dialog"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+
+                <md-dialog-content>
+                    <div class="md-dialog-content">
+                        <md-input-container class="md-block">
+                            <label for="login">Login</label>
+                            <input type="text"
+                                   id="login"
+                                   name="login"
+                                   ng-maxlength="90"
+                                   ng-model="inputs.name" required>
+                            <div ng-messages="loginForm.login.$error"
+                                 ng-if="loginForm.login.$invalid && !loginForm.login.$pristine">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="maxlength">The given expression is too long</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label for="pass">Password</label>
+                            <input type="password"
+                                   id="pass"
+                                   name="password"
+                                   ng-model="inputs.pass" required>
+                            <div ng-messages="loginForm.password.$error"
+                                 ng-if="loginForm.password.$invalid && !loginForm.password.$pristine">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-dialog-content>
+
+                <md-dialog-actions layout="row">
+                    <md-button type="submit" class="md-primary md-raised" ng-disabled="loginForm.$invalid" ng-click="login(inputs)">
+                        Login
+                    </md-button>
+                </md-dialog-actions>
+            </form>
+        </md-dialog>
+    </script>
+</div>

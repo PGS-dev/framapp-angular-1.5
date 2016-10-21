@@ -1,25 +1,44 @@
 @import 'colors';
 @import 'fonts';
 
-.center-text {
-  text-align: center;
+#loading-bar .bar {
+  position: fixed;
+  z-index: 99;
+  top: 0px;
+  height: 3px;
+  background: #2196F3;
 }
 
-.margin-lft {
-  margin-left: 17.1%;
-  list-style: none;
-  padding: 0;
-  li {
-    display: inline-block;
-  }
+#loading-bar-spinner .spinner-icon {
+  border-top-color: #2c3e50;
+  border-left-color: #2c3e50;
+}
+
+#loading-bar .peg {
+  -moz-box-shadow: #000 1px 0 3px 1px;
+  -ms-box-shadow: #000 1px 0 3px 1px;
+  -webkit-box-shadow: #000 1px 0 3px 1px;
+  box-shadow: #000 1px 0 3px 1px;
 }
 
 .pullleft {
   margin-left: 320px;
 }
 
+.pgs-float-r {
+  float: right;
+}
+
+.pgs-float-l {
+  float: left;
+}
+
 md-backdrop {
   position: fixed;
+}
+
+md-content.pgs-mainContent {
+  overflow: visible;
 }
 
 .pgs-mainContent {

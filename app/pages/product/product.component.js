@@ -1,25 +1,23 @@
 class ProductController {
-    constructor(dataService, productService, $mdMedia) {
+    constructor($mdMedia, $state, dataService) {
         'ngInject';
-        this.dataService = dataService;
-        this.productService = productService;
+
         this.$mdMedia = $mdMedia;
+        this.$state = $state;
+        this.dataService = dataService;
+
     }
 
     $onInit() {
-        this.getProducts();
-        this.data = [];
-        this.productData = [];
+        this.getProduct();
     }
 
-    getProducts() {
-        this.dataService.getProducts()
+    getProduct() {
+        this.dataService.getProduct(this.$state.params.id)
             .then(data => {
-                this.data = data;
-                this.productData = this.productService.getProductDetails(this.data);
-            })
+                this.productData = data;
+            });
     }
-
 }
 
 const ProductViewComponent = {

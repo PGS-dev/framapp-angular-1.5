@@ -1,25 +1,21 @@
 class MainPageController {
-    constructor(dataService, homePageService, $mdMedia) {
+    constructor($mdMedia, dataService) {
         'ngInject';
-        this.dataService = dataService;
-        this.homePageService = homePageService;
+
         this.$mdMedia = $mdMedia;
+        this.dataService = dataService;
     }
 
     $onInit() {
-        this.getProducts();
-        this.data = [];
-        this.promotedData = [];
+        this.getPromotedProducts();
     }
 
-    getProducts() {
-        this.dataService.getProducts()
+    getPromotedProducts() {
+        this.dataService.getPromotedProducts()
             .then(data => {
-                this.data = data;
-                this.promotedData = this.homePageService.filterProductsByPromoted(this.data);
-            })
+                this.promotedData = data;
+            });
     }
-
 }
 
 const MainPageComponent = {

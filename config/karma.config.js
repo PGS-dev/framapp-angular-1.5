@@ -6,25 +6,30 @@ module.exports = function (karma) {
         basePath: confs.path.app,
         frameworks: ['jasmine'],
         files: [
-
-            // '../node_modules/angular.js',
-            // '../node_modules/angular-mocks.js',
-            '../app/tests.webpack.js',
+            '../node_modules/angular/angular.js',
+            '../node_modules/angular-ui-router/release/angular-ui-router.js',
+            '../node_modules/angular-mocks/angular-mocks.js',
+            '../node_modules/angular-local-storage/dist/angular-local-storage.js',
+            '../app/components/*/index.js',
+            '../app/pages/*/*/*/index.js',
+            '../app/pages/*/index.js',
             '**/*.spec.js'
         ],
-        exclude: [],
+        exclude: [
+            // '**/*.spec.js'
+        ],
         preprocessors: {
             // add webpack as preprocessor
             '**/*.js': ['webpack', 'sourcemap']
         },
         webpack: webpackTestConfig,
         webpackServer: {noInfo: true},
-        reporters: ['mocha'],
+        reporters: ['progress', 'mocha'],
         port: 9876,
-        colors: false,
-        autoWatch: false,
-        browsers: ['PhantomJS'],
-        singleRun: true,
+        colors: true,
+        autoWatch: true,
+        browsers: ['Chrome'],
+        singleRun: false,
         concurrency: 6e6
     });
 };

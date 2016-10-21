@@ -1,25 +1,22 @@
 class CategoryController {
-    constructor(dataService, categoryService, $mdMedia) {
+    constructor($mdMedia, $state, dataService) {
         'ngInject';
-        this.dataService = dataService;
-        this.categoryService = categoryService;
+
         this.$mdMedia = $mdMedia;
+        this.$state = $state;
+        this.dataService = dataService;
     }
 
     $onInit() {
-        this.getProducts();
-        this.data = [];
-        this.categoryData = [];
+        this.getProductsByCategory();
     }
 
-    getProducts() {
-        this.dataService.getProducts()
-            .then((data) => {
-                this.data = data;
-                this.categoryData = this.categoryService.filterProductsByCategory(this.data);
-            })
+    getProductsByCategory() {
+        this.dataService.getProductsByCategory(this.$state.params.id)
+            .then(data => {
+                this.productData = data;
+            });
     }
-
 }
 
 const CategoryViewComponent = {

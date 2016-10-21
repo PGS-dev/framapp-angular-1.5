@@ -1,29 +1,76 @@
 class DataService {
-    constructor($http, BASE_URL) {
+    constructor(firebase, toastService, $firebaseObject) {
         'ngInject';
 
-        this.$http = $http;
-        this.BASE_URL = BASE_URL;
+        this.firebase = firebase;
+        this.toastService = toastService;
+        this.$firebaseObject = $firebaseObject;
     }
 
     getCategories() {
-        return this.$http.get(`${this.BASE_URL}/categories.json`)
-            .then((response) => {
-                return response.data;
-            })
-            .catch(this.responseError);
+        const dbRefObjectCategories = this.firebase.database().ref('api/v1').child('categories');
+        const categoriesData = this.$firebaseObject(dbRefObjectCategories);
+
+        return categoriesData.$loaded().then(responseCategories => {
+            return responseCategories;
+        });
+    }
+
+    getCategory(categoryKey) {
+        const dbRefObjectCategory = this.firebase.database().ref('api/v1/categories').child(categoryKey);
+        const categoryData = this.$firebaseObject(dbRefObjectCategory);
+
+        return categoryData.$loaded().then(responseCategory => {
+            return responseCategory;
+        });
+    }
+
+    getProductsByCategory(category) {
+        const dbRefObjectProducts =
+            this.firebase.database()
+                .ref('api/v1')
+                .child('products')
+                .orderByChild('category')
+                .equalTo(category);
+
+        const productData = this.$firebaseObject(dbRefObjectProducts);
+
+        return productData.$loaded().then(responseProducts => {
+            return responseProducts;
+        });
     }
 
     getProducts() {
-        return this.$http.get(`${this.BASE_URL}/products.json`)
-            .then((response) => {
-                return response.data;
-            })
-            .catch(this.responseError);
+        const dbRefObjectProducts = this.firebase.database().ref('api/v1').child('products');
+        const productsData = this.$firebaseObject(dbRefObjectProducts);
+
+        return productsData.$loaded().then(responseProducts => {
+            return responseProducts;
+        });
     }
 
-    responseError(response) {
-        console.log(response);
+    getPromotedProducts() {
+        const dbRefObjectProducts =
+            this.firebase.database()
+                .ref('api/v1')
+                .child('products')
+                .orderByChild('promoted')
+                .equalTo(true);
+
+        const productsData = this.$firebaseObject(dbRefObjectProducts);
+
+        return productsData.$loaded().then(responseProducts => {
+            return responseProducts;
+        });
+    }
+
+    getProduct(productKey) {
+        const dbRefObjectProduct = this.firebase.database().ref('api/v1/products').child(productKey);
+        const productData = this.$firebaseObject(dbRefObjectProduct);
+
+        return productData.$loaded().then(responseProduct => {
+            return responseProduct;
+        });
     }
 
 }

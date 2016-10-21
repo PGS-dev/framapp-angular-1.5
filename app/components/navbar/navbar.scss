@@ -1,8 +1,9 @@
-@import '../../style/sass/common';
+@import '../../style/sass/colors';
 
 .NavbarComponent {
   md-toolbar {
     position: fixed;
+    top: 0;
     width: 100%;
     background: $pgs-darkorange;
 

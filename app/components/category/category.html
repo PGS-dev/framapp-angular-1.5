@@ -3,18 +3,44 @@
         md-component-id="left"
         layout="column"
         md-is-locked-open="$mdMedia('gt-sm')">
+
     <md-toolbar class="md-theme-light">
         <h1 class="md-toolbar-tools">Category</h1>
     </md-toolbar>
     <md-content layout="column">
-        <md-button ng-repeat="tile in $ctrl.data"
-                   ui-sref="app.category({ id:tile.id })"
+        <md-button ng-repeat="(categoryKey, categorieData) in $ctrl.categoriesData"
+                   ui-sref="app.category({ id:categoryKey })"
                    class="md-primary"
-                   ng-click="$ctrl.selectCategory(tile.id)"
-                   ng-class="$ctrl.getCategoryClass(tile.id)"
-                   aria-label="Category {{ tile.title }}">
-            <span>{{ tile.title }}</span>
+                   ng-click="$ctrl.selectCategory('app.category/'+categoryKey)"
+                   ng-class="$ctrl.getCategoryClass('app.category/'+categoryKey)"
+                   aria-label="Category {{ categorieData.title }}">
+            <span>{{ categorieData.title }}</span>
         </md-button>
     </md-content>
+
+    <div ng-if="$ctrl.userData.uid">
+        <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">Admin</h1>
+        </md-toolbar>
+        <md-content layout="column">
+
+            <md-button class="md-primary"
+                       ui-sref="app.products"
+                       ng-click="$ctrl.selectCategory('app.products')"
+                       ng-class="$ctrl.getCategoryClass('app.products')"
+                       aria-label="Products">
+                <span>Products</span>
+            </md-button>
+
+            <md-button class="md-primary"
+                       ui-sref="app.categories"
+                       ng-click="$ctrl.selectCategory('app.categories')"
+                       ng-class="$ctrl.getCategoryClass('app.categories')"
+                       aria-label="Categories">
+                <span>Categories</span>
+            </md-button>
+        </md-content>
+    </div>
+
     <div flex></div>
 </md-sidenav>

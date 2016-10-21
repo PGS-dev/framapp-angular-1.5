@@ -1,0 +1,75 @@
+<div class="ProductAdmin" layout="column" ng-cloak>
+    <md-content ng-class="{pullleft: $ctrl.$mdMedia('gt-sm')}"
+                class="pgs-mainContent" layout-padding>
+        <div layout="column" layout-align="top left">
+            <div layout="row">
+                <div flex="33">
+                    <md-input-container class="md-block">
+                        <label>Search products</label>
+                        <input ng-model="searchProducts.title">
+                    </md-input-container>
+                </div>
+                <div flex="33">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Category</label>
+                        <md-select ng-model="searchProducts.category">
+                            <md-option value="">
+                                All
+                            </md-option>
+                            <md-option ng-repeat="(key, categories) in $ctrl.categoriesData"
+                                       value="{{key}}"
+                                       ng-selected="{{key == $ctrl.getCategoryFromURL}}">
+                                {{categories.title}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div flex>
+                    <md-button ui-sref="app.product-create" class="md-raised md-primary pgs-float-r">
+                        Add Product
+                    </md-button>
+                </div>
+            </div>
+            <md-list-item ng-repeat="productDetails in $ctrl.productData | filter: searchProducts">
+                <p>{{productDetails.title}} <span class="desc">{{productDetails.category}}</span></p>
+                <md-icon class="md-secondary"
+                         ng-click="null"
+                         ui-sref="app.product-edit({ id:productDetails.productKey })"
+                         aria-label="Settings"
+                         md-svg-icon="../icons/ic_settings_black_24px.svg"></md-icon>
+                <md-icon class="md-secondary"
+                         ng-click="$ctrl.deleteProduct(productDetails.productKey, productDetails.title)"
+                         aria-label="Delete"
+                         md-svg-icon="../icons/ic_delete_black_24px.svg"></md-icon>
+                <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+        </div>
+        <div flex></div>
+    </md-content>
+
+    <script type="text/ng-template" id="deleteProductDialog.tmpl.html">
+        <md-dialog aria-label="Delete product">
+            <form ng-cloak>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Delete product</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon md-svg-src="../icons/ic_clear_white_24px.svg" aria-label="Close dialog"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <div class="md-dialog-content">
+                        <p>`{{selectedTitle}}` product will be delete, are you sure about that?</p>
+                    </div>
+                </md-dialog-content>
+                <md-dialog-actions layout="row">
+                    <md-button class="md-raised md-warn" ng-click="delete()">
+                        Delete
+                    </md-button>
+                </md-dialog-actions>
+            </form>
+        </md-dialog>
+    </script>
+</div>
