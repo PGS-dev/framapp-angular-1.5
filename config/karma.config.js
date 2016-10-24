@@ -10,6 +10,7 @@ module.exports = function (karma) {
             '../node_modules/angularfire/dist/angularfire.js',
             '../node_modules/angular-ui-router/release/angular-ui-router.js',
             '../node_modules/angular-mocks/angular-mocks.js',
+            '../node_modules/angular-material/angular-material.js',
             '../app/components/*/index.js',
             '../app/pages/*/*/*/index.js',
             '../app/pages/*/index.js',
