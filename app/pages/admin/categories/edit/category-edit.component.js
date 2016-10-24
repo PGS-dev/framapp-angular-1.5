@@ -1,15 +1,25 @@
 class categoryEditController {
-    constructor($mdMedia, $state, dataService, categoryEditService) {
+    constructor($mdMedia, $state, firebase, dataService, categoryEditService) {
         'ngInject';
 
         this.$mdMedia = $mdMedia;
         this.$state = $state;
+        this.firebase = firebase;
         this.dataService = dataService;
         this.categoryEditService = categoryEditService;
     }
 
     $onInit() {
         this.getCategory();
+        this.redirectUser();
+    }
+
+    redirectUser() {
+        this.firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                this.$state.go('app.main');
+            }
+        });
     }
 
     getCategory() {
