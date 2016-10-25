@@ -15,7 +15,6 @@ describe('category-createService test', () => {
             showWarningToast: jasmine.createSpy('showWarningToast'),
             showSuccessToast: jasmine.createSpy('showSuccessToast')
         });
-        $provide.value('firebase', {});
     }));
 
     beforeEach(inject((_firebase_, _$state_, _toastService_, _categoryEditService_) => {
