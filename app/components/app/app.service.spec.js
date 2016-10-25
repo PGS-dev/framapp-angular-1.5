@@ -1,5 +1,5 @@
 describe('dataService', () => {
-    let firebase, $httpBackend, dataService;
+    let firebase, dataService;
 
     const paramCategory = 'phones';
     const paramProductCategory = 'notebooks'
@@ -8,9 +8,8 @@ describe('dataService', () => {
     beforeEach(angular.mock.module('firebase'));
     beforeEach(angular.mock.module('app.components.appModule'));
 
-    beforeEach(inject((_firebase_, _$httpBackend_, _dataService_) => {
+    beforeEach(inject((_firebase_, _dataService_) => {
         firebase = _firebase_;
-        $httpBackend = _$httpBackend_;
         dataService = _dataService_;
     }));
 
